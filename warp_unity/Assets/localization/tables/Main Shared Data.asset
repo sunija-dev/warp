@@ -1,0 +1,937 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: Main Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: Main
+  m_TableCollectionNameGuidString: cd534dcaa45538c42916b9959a815554
+  m_Entries:
+  - m_Id: 4929044783104
+    m_Key: Select Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5248331980800
+    m_Key: choose_language_explain
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10632429236035584
+    m_Key: North America (NA)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10632554113048576
+    m_Key: Europe (EU)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10633466390945792
+    m_Key: select_region
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10633726056112128
+    m_Key: select_region_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16104496521715712
+    m_Key: page_name_home
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36324707749240832
+    m_Key: login_page_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36324923315494912
+    m_Key: setup_page_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325047651442688
+    m_Key: page_name_character
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325216698671104
+    m_Key: page_name_rpoffers
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325245903609856
+    m_Key: page_name_finder
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325271446921216
+    m_Key: page_name_settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325299217408000
+    m_Key: page_name_guides
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325334910935040
+    m_Key: page_name_debug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36328398745149440
+    m_Key: page_name_loading
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36328627275997184
+    m_Key: page_name_requestapi
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36330698595278848
+    m_Key: close_warp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36331074941788160
+    m_Key: logging_in
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36331235550076928
+    m_Key: login_request
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36332498547286016
+    m_Key: button_continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36332671449079808
+    m_Key: conditions_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36332860649938944
+    m_Key: conditions
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36333085896646656
+    m_Key: button_understand_and_agree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36333197620322304
+    m_Key: button_dont_agree
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36336975035670528
+    m_Key: setting_start_warp_with_gw2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337416687493120
+    m_Key: title_do_you_have_an_account
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337561818800128
+    m_Key: account_setup_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337665187422208
+    m_Key: button_back
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337771731132416
+    m_Key: button_yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337938312110080
+    m_Key: button_no_account_yet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36342798583504896
+    m_Key: title_create_gw2_account
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36342888681349120
+    m_Key: create_gw2_account_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343190012731392
+    m_Key: title_conntect_warp_to_account
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343310531862528
+    m_Key: api_key_setup_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343417872490496
+    m_Key: my_api_key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343532733505536
+    m_Key: button_paste_key
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343694210015232
+    m_Key: button_submit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343868235882496
+    m_Key: title_setup_options
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343932719112192
+    m_Key: setup_options_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36344188051562496
+    m_Key: title_installation_finished
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36344365143465984
+    m_Key: installation_finished_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346018752012288
+    m_Key: name_send_feedback
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346314110705664
+    m_Key: category_home_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346505010257920
+    m_Key: category_sendfeedback_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346694118842368
+    m_Key: button_send
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346919633985536
+    m_Key: category_sheet
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347006565130240
+    m_Key: category_aboutme
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347160965849088
+    m_Key: at_first_glance_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347284706205696
+    m_Key: button_edit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347383402373120
+    m_Key: title_known_for
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347486330593280
+    m_Key: title_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347664659816448
+    m_Key: button_discard_changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347778593890304
+    m_Key: button_save_changes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348314755964928
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348444418678784
+    m_Key: aboutme_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348574219804672
+    m_Key: rp_experience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348663776583680
+    m_Key: fighting_style
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348723293757440
+    m_Key: adult_content
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348817640431616
+    m_Key: lore_strictness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348890537435136
+    m_Key: lore_strictness_open
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348951975600128
+    m_Key: lore_strictness_strict
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349048050327552
+    m_Key: topic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349112718106624
+    m_Key: topic_adventure
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349167214698496
+    m_Key: topic_sliceoflife
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349254389112832
+    m_Key: rpstyle_realistic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349376703406080
+    m_Key: rpstyle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349441887084544
+    m_Key: rpstyle_phantastic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349524464541696
+    m_Key: postlength
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349556450304000
+    m_Key: postlength_long
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349633659052032
+    m_Key: postlength_short
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349770879901696
+    m_Key: aboutme_example_post
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36357618141667328
+    m_Key: category_onlinelist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36357988226080768
+    m_Key: onlinelist_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358036045340672
+    m_Key: onlinelist_map
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358102239846400
+    m_Key: onlinelist_world
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358322923151360
+    m_Key: category_general_settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358488900149248
+    m_Key: category_report
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358578901524480
+    m_Key: category_about
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358851497730048
+    m_Key: button_restart_warp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358935786463232
+    m_Key: button_quit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359277051813888
+    m_Key: reporting_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359432450777088
+    m_Key: report_playername
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359533076324352
+    m_Key: report_reported_text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359690924761088
+    m_Key: report_reason
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359790166188032
+    m_Key: report_note
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36360270325915648
+    m_Key: about_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36360484780679168
+    m_Key: api_key_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36360563763617792
+    m_Key: api_key_desc
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36361257254035456
+    m_Key: topbar_name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36362618116939776
+    m_Key: charsheet_about_player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36363129960439808
+    m_Key: accountsheet_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36364806855761920
+    m_Key: aspect_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36365747873030144
+    m_Key: button_join_world
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36366289991016448
+    m_Key: selecticon_title
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36391027287171072
+    m_Key: report_player
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41420753986822144
+    m_Key: tt_at_first_glance
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41422090476625920
+    m_Key: tt_known_for
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41422498859229184
+    m_Key: sheet_info
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41423058748481536
+    m_Key: tt_sheet_description
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41423816948621312
+    m_Key: tt_rpexperience
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41423977061982208
+    m_Key: tt_fighting_style
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424246957056000
+    m_Key: tt_adult_content
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424468969955328
+    m_Key: tt_lore_strictness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424585592578048
+    m_Key: tt_rp_topic
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424693625266176
+    m_Key: tt_rpstyle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424794292756480
+    m_Key: tt_post_length
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424968557699072
+    m_Key: tt_example_post
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47684194951143424
+    m_Key: en
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47685303434387456
+    m_Key: de
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47685319305633792
+    m_Key: fr
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47685328583434240
+    m_Key: es
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695816016961536
+    m_Key: 30
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695818969751552
+    m_Key: 60
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695819703754752
+    m_Key: 120
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695820492283904
+    m_Key: 144
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695822912397312
+    m_Key: 100%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695914998341632
+    m_Key: 125%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695916822863872
+    m_Key: 150%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695918001463296
+    m_Key: 175%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695918777409536
+    m_Key: NA
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695919700156416
+    m_Key: EU
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695922124464128
+    m_Key: 'report_player
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696369715421184
+    m_Key: Just_Started
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696370495561728
+    m_Key: Beginner
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696371284090880
+    m_Key: Medium
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696372143923200
+    m_Key: Experienced
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696551714660352
+    m_Key: Emote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696552956174336
+    m_Key: Dice
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696554185105408
+    m_Key: Any
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696555447590912
+    m_Key: Teen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696560359120896
+    m_Key: Adult
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335479035568128
+    m_Key: taxi_ask
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335536333955072
+    m_Key: ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335538749874176
+    m_Key: empty
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335539404185600
+    m_Key: taxi_offline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335543313276928
+    m_Key: taxi_request
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335696497647616
+    m_Key: decline
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335698196340736
+    m_Key: taxi_accepted
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335699458826240
+    m_Key: taxi_declined
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335700440293376
+    m_Key: feedback_timeout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335990761627648
+    m_Key: feedback_success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335993047523328
+    m_Key: feedback_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335994624581632
+    m_Key: spot_timeout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335996386189312
+    m_Key: spot_success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336019790405632
+    m_Key: spot_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336022021775360
+    m_Key: report_timeout
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336024274116608
+    m_Key: report_success
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336288326524928
+    m_Key: report_failed
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336289060528128
+    m_Key: report_discard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336289786142720
+    m_Key: yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336290612420608
+    m_Key: no
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336291451281408
+    m_Key: sheet_discard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336292340473856
+    m_Key: aboutme_discard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336293238054912
+    m_Key: error_patcher_not_found
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336294156607488
+    m_Key: created_shortcut
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687252707385344
+    m_Key: settings_header_rp
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687253361696768
+    m_Key: settings_open_minicharlist
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687254078922752
+    m_Key: settings_tech
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687254871646208
+    m_Key: settings_create_desktop
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687286039519232
+    m_Key: settings_language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687287402668032
+    m_Key: settings_ui_language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687289097166848
+    m_Key: settings_translator_credit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687290556784640
+    m_Key: setting_rp_language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687416813723648
+    m_Key: settings_region
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687420156583936
+    m_Key: settings_other
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687420890587136
+    m_Key: bHideOnMap
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687421540704256
+    m_Key: bHideInOnlineList
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687422266318848
+    m_Key: iMaxFPS
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687423008710656
+    m_Key: fVolume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687423793045504
+    m_Key: bStartWarpWithGw2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687427735691264
+    m_Key: bShowDebugCategory
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687526813540352
+    m_Key: fIconDisplacement
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687527753064448
+    m_Key: iDpiScaling
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687529053298688
+    m_Key: bShowCharSheetOnHover
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 134135317920129024
+    m_Key: tt_search_explain
+    m_Metadata:
+      m_Items:
+      - id: 1
+  - m_Id: 134470982503407616
+    m_Key: warp_cannot_connect_title
+    m_Metadata:
+      m_Items:
+      - id: 2
+  - m_Id: 134471014224928768
+    m_Key: warp_cannot_connect
+    m_Metadata:
+      m_Items:
+      - id: 3
+  - m_Id: 137732636494176256
+    m_Key: page_name_notes
+    m_Metadata:
+      m_Items:
+      - id: 4
+  - m_Id: 137732665900441600
+    m_Key: notes_desc
+    m_Metadata:
+      m_Items:
+      - id: 5
+  - m_Id: 137732723265937408
+    m_Key: 200%
+    m_Metadata:
+      m_Items:
+      - id: 6
+  - m_Id: 137734154953859072
+    m_Key: 225%
+    m_Metadata:
+      m_Items:
+      - id: 7
+  - m_Id: 137734185509363712
+    m_Key: 250%
+    m_Metadata:
+      m_Items:
+      - id: 8
+  - m_Id: 137735616903684096
+    m_Key: reset_windows
+    m_Metadata:
+      m_Items:
+      - id: 9
+  - m_Id: 137736168152670208
+    m_Key: show_tag_list
+    m_Metadata:
+      m_Items:
+      - id: 10
+  - m_Id: 137736206346002432
+    m_Key: tag_list_title
+    m_Metadata:
+      m_Items:
+      - id: 11
+  - m_Id: 137736581744599040
+    m_Key: search
+    m_Metadata:
+      m_Items:
+      - id: 12
+  - m_Id: 137736596139450368
+    m_Key: copy_id
+    m_Metadata:
+      m_Items:
+      - id: 13
+  - m_Id: 137736612119748608
+    m_Key: compare
+    m_Metadata:
+      m_Items:
+      - id: 14
+  - m_Id: 137736627550593024
+    m_Key: copy_sheet
+    m_Metadata:
+      m_Items:
+      - id: 15
+  - m_Id: 137736657829273600
+    m_Key: copy_sheet_title
+    m_Metadata:
+      m_Items:
+      - id: 16
+  - m_Id: 137736675894140928
+    m_Key: copy_sheet_desc
+    m_Metadata:
+      m_Items:
+      - id: 17
+  - m_Id: 137736696144240640
+    m_Key: abort
+    m_Metadata:
+      m_Items:
+      - id: 18
+  - m_Id: 137771011959857152
+    m_Key: whisper
+    m_Metadata:
+      m_Items:
+      - id: 19
+  - m_Id: 137771011964051456
+    m_Key: invite_to_group
+    m_Metadata:
+      m_Items:
+      - id: 20
+  - m_Id: 137813155537920000
+    m_Key: notes_discard
+    m_Metadata:
+      m_Items:
+      - id: 21
+  - m_Id: 137745644427583488
+    m_Key: iconselector_title
+    m_Metadata:
+      m_Items:
+      - id: 22
+  - m_Id: 137736137395838976
+    m_Key: iconselector_info
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    id: 23
+  references:
+    version: 1
+    00000000:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000001:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000002:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000003:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000004:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000005:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000006:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000007:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000008:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000009:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    0000000A:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    0000000B:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    0000000C:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    0000000D:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    0000000E:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    0000000F:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000010:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000011:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000012:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000013:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000014:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000015:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000016:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: changed
+    00000017:
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables,
+        asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1623402412609

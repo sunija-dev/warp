@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fefcf4718ba1f641a62c12fe61e3cbf, type: 3}
+  m_Name: quest_mina
+  m_EditorClassIdentifier: 
+  gw2pos:
+    v3Pos: {x: -448.4, y: 169, z: 539.6}
+    iMapID: 27
+  quaternionRotation: {x: 0, y: 0, z: 0, w: 0}
+  fSpawnDistance: 25
+  strComment: 
+  strName: Mina Demena
+  strText: So much knowledge by so many minds in one place... Tell me the ancient
+    words and I will share mine.
+  strKeyword: The magic light of knowledge keep only I.
+  strTextSuccess: 'Congratualtions, my knowledge is yours.
+
+    From now on, you''ll
+    just have to look at a <b>map</b> to <b>top</b> anyone at saying the <b>right</b>
+    things.'
+  strTextFail: 'No. But to find my sunken treasures, listen:
+
+    As I wish to be
+    as gods are smart
+
+    Learn knowledge pure, forbidden art
+
+    Guilty tears
+    fall upon my freezing heart'

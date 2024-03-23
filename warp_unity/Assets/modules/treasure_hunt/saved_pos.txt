@@ -1,0 +1,183 @@
+Saves positions
+
+durmand
+tears
+queensdale
+garrenhoff
+lions arch
+caledon
+orrrrrr
+rata
+iceberg
+feuerpond
+
+1/13 , 3/12 , 4/14 , 4/9 , 4/4, 1/22, 4/3 , 2/1
+The magic light of knowledge keep only I
+
+An old friend is seeking knowledge. You might want to pay her a visit.
+
+# start/help
+No, but this will help you find my sunken treasures:
+
+# tears (Guilty Tears Fall at the edge of winter zone)
+As I wish to be as gods are smart
+Learn knowledge pure, forbidden art
+Guilty tears fall upon my freezing heart
+
+# queensdale (Holzfäller an See, Holz im See)
+I watched where trees were to swim
+By humans, though, not their own kin
+
+# garrenhoff (Fliegender Magierturm, Stadt untendran ist ein bissschen sein Merch-Store)
+True magic I seeked from magician's wares
+Not tricksters playing at town's faires
+but those who made the town theirs
+
+# caledon (bridge to brid people kingdom, no other races allowed)
+I traved where the birds do walk
+but humans don't, and neither talk
+//so I got only halfway across the bridge, couldn't even knock
+
+# lions arch (a tunnel behind a lion statue in a sunken city)
+Searched sunken treasures in the sunken city
+In paths behind the guarding kitty
+
+
+# orrrrrr ("Hope Falls", in a city reemerged from the depths)
+I visited another - as this one left my goal undue -
+Which reemerged from depths of blue
+Not that there my hope falls too
+
+("Mirror's Handle", vista point looking at the sea)
+Stared in the mirror to find me
+But rather looking from the handle to the sea
+Unraveled the endless deep as the key
+
+(Versunkene Steinmetzwerkstatt, hat Götterstatue der schönsten Göttin versucht, wahnsinnig geworden)
+Tried to learn from captured beauty in the master's piece
+But learned that mastery might even decrease
+My longing for an inner peace
+
+# rata (Section of a city, that is not named after the ones named. Googles to jump in water)
+Fed up with authority, memories, development and mystics
+I put on some goggles to study inherent ballistics
+
+# iceberg (City on an iceberg)
+Most of myself remains under the surface, buried
+Like ice in water that the city carried
+
+# feuerpond (Teich zwischen Lava)
+My journey was a pond of water, a save place
+opposing the unknown's firey embrace
+
+# sonnet (Book "Before history" at the beginning of the yourney)
+To end the journey, we go home
+Where I hid words in an ancient tome
+To bring you this puzzle of knowledge, this mystery
+That I wrote before history.
+
+
+
+
+
+
+First ways true revelation dawn world young 
+humanity magic gifts thought conscious night uncloaked armor
+unarmed knowledge dark light child pity helpless creation
+wild I poet History behold over which new
+
+take keep watch surveys shifts bless
+
+Wild magic 
+Knowledge is light in night, wild magic of true gods.
+the wild magic I behold.
+Knowledge is wiedling light at night, true magic of humanity.
+4/4 - 
+
+Dawn from night, 
+Knowledge through thought, magic by gods, 
+Behold my child
+only I.
+Magic gifts
+which keep only I.
+The magic light of knowledge keep only I.
+1/13 - 3/12 - 4/14 - 4/9 - 4/4 - 1/22 - 4/3 - 2/1
+
+10
+
+
+
+a magician isn't part of carnival
+but made the town his carnivalthe
+but made the town theirs
+
+traveled where the birds walked
+but no human did
+and even I only made it halfway across the bridge
+
+only there, I could find my ground
+key
+
+wanted to learn from the master, that captured beauty
+but learned that mastery doesn't come with content
+maybe even opposite
+
+//where the guardians guard the path
+
+most of myself is below the surface
+as icebergs are, when they carry cities
+swimming city
+
+you finish where you started
+i took my words from a book
+how I knew? for you a mystery
+i wrote itfdse before history
+
+
+1 lions arch cave
+(-523.4, -5.8, -199.8)
+50
+
+2 abtei durmand
+(-448.4, 169.0, 539.6)
+27
+
+3 queensdale, cave in delavan lake
+(44.3, -18.4, 485.2)
+15
+
+4 Island below garrenhoff?, between cliffs
+(1107.8, -4.5, -529.7)
+23
+
+5 orr hole waterfall
+(710.9, -5.5, -525.9)
+65
+
+6 mirrors handle, dark depths behind waterfall (far sight!) -> *3
+(532.0, -217.2, 593.9)
+65
+
+7 malchors anguish, dwayna
+(-658.7, -74.0, -215.2)
+65
+
+8 rata sum diving goggles
+(-35.6, -17.0, -341.9)
+139
+
+9 tengu bridge
+(452.9, -26.6, 211.7)
+34
+
+10 guilty tears * 1.8
+(525.8, -24.8, 155.4)
+29
+
+11 under iceberg city
+(-496.0, -124.4, -316.5)
+30
+
+12 baelfire pond
+(522.2, -3.8, 722.3)
+22

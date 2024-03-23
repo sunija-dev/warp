@@ -1,0 +1,997 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Main_de
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: de
+  m_SharedData: {fileID: 11400000, guid: cd534dcaa45538c42916b9959a815554, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 4929044783104
+    m_Localized: "Sprache ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 5248331980800
+    m_Localized: "Bitte w\xE4hle die Sprache in der du rollenspielen willst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10632429236035584
+    m_Localized: Nordamerika (NA)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10632554113048576
+    m_Localized: Europa (EU)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10633466390945792
+    m_Localized: "Bitte w\xE4hle deine Region."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10633726056112128
+    m_Localized: "Region ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 16104496521715712
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36324707749240832
+    m_Localized: Login
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36324923315494912
+    m_Localized: Installation
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325047651442688
+    m_Localized: Charakter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325216698671104
+    m_Localized: RP-Angebote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325245903609856
+    m_Localized: RP finden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325271446921216
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325299217408000
+    m_Localized: Guides
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36325334910935040
+    m_Localized: Debug
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36328398745149440
+    m_Localized: Wird geladen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36328627275997184
+    m_Localized: "API-Schl\xFCssel eingeben"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36330698595278848
+    m_Localized: "WARP schlie\xDFen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36331074941788160
+    m_Localized: Einloggen...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36331235550076928
+    m_Localized: Logge einen Charakter ein, um WARP zu starten.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36332498547286016
+    m_Localized: Weiter
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36332671449079808
+    m_Localized: Danke, dass Du WARP benutzt!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36332860649938944
+    m_Localized: "Warp ist ein sicheres und legales Overlay f\xFCr GW2. Weitere Informationen
+      findest Du auf unserer Website: <color=#CCCC66><link=\"https://gw2warp.com\">gw2warp.com</link></color>\n\n<b><color=#B11515>
+      WARP und seine Entwickler*Innen arbeiten nicht f\xFCr ArenaNet oder Guild Wars
+      2.\n</b> </color>\nF\xFCr Support innerhalb von WARP, schreibe bitte Sunija#6598
+      auf Discord an. Bitte schreibe <i>nicht</i> ArenaNet bei Problemen mit WARP
+      an, da sie dir dabei nicht helfen k\xF6nnen.\n\nWir unterst\xFCtzen ArenaNets
+      Entscheidung, dass Addons keine bedeutenden Gameplay-Vorteile gew\xE4hren sollten.
+      Wenn Du einen Weg findest, mit dem WARP als ein solcher Exploit verwendet werden
+      kann, schreibe uns bitte an.\nWARP ist nur auf Rollenspiel ausgelegt.\n\nViel
+      Spa\xDF beim Rollenspiel! <sprite index=0>\n\nHaftungsausschluss\nTHE SOFTWARE
+      IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING
+      BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+      PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS
+      BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF
+      CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+      SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE. \n\nWARP wird in der
+      Unity Game Engine entwickelt. Durch die Verwendung dieser Software stimmst
+      Du der <color=#CCCC66><link=\"https://unity3d.com/de/legal/privacy-policy\">Unity-Datenschutzbestimmung</link></color>
+      zu.\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36333085896646656
+    m_Localized: 'Ich stimme zu
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36333197620322304
+    m_Localized: Ich stimme nicht zu
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36336975035670528
+    m_Localized: Starte WARP mit Guild Wars 2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337416687493120
+    m_Localized: Hast du schon ein einen Guild Wars 2 Account?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337561818800128
+    m_Localized: 'Guild Wars 2 ist <b>kostenlos</b>.
+
+      Um dich anzumelden brauchst
+      du <b>nur eine E-Mail-Adresse.</b>'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337665187422208
+    m_Localized: "Zur\xFCck"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337771731132416
+    m_Localized: Ja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36337938312110080
+    m_Localized: 'Noch nicht.
+
+      Lass uns jetzt einen erstellen!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36342798583504896
+    m_Localized: Erstelle einen kostenlosen Guild Wars 2 Account
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36342888681349120
+    m_Localized: "Guild Wars 2 Accounts sind <b>kostenlos</b> und <b>ben\xF6tigen
+      nur eine E-Mail-Adresse</b>.\n\nUm ein Konto zu erstellen...\n  1) Klicke auf
+      diesen Link: <color=#cccc66><link=\"https://account.arena.net/register?alt=gw2\">Account-Erstellung</link></color>\n 
+      2) Gebe Deine Email-Adresse ein\n  3) W\xE4hle ein Passwort\n  4) W\xE4hle
+      einen \xF6ffentlichen Namen. <b>Tipp:> Nimm etwas einfaches, damit sich andere
+      an dich erinnern! </b>\n  5) Fertig! <3 Klicke auf \"Weiter\".\n\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343190012731392
+    m_Localized: Verbinde WARP mit deinem Account
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343310531862528
+    m_Localized: "\n  1) Klicke auf diesen Link: <color=#CCCC66><link=\"https://account.arena.net/applications\n\">https://account.arena.net/applications.</link></color>\n 
+      2) Melde dich mit deinem GW2-Account an\n  3) Klicke auf \"Neuer Schl\xFCssel\"\n 
+      4) W\xE4hle irgendeinen Namen (z. B. \"WARP\")\n  5) W\xE4hle \"account\" und
+      \"characters\"\n  6) Kopiere den Schl\xFCssel\n  7) F\xFCgen ihn in das Feld
+      unten ein\n  8) Dr\xFCcke \"Senden\"\n\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343417872490496
+    m_Localized: "Mein API-Schl\xFCssel:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343532733505536
+    m_Localized: "Schl\xFCssel einf\xFCgen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343694210015232
+    m_Localized: Absenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343868235882496
+    m_Localized: Setup-Optionen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36343932719112192
+    m_Localized: "Um WARP in GW2 zu sehen, musst Du zwei Optionen \xE4ndern.\n\n 
+      1) \xD6ffne Guild Wars 2.\n    (Noch nicht installiert? Klicke hier, um es
+      herunterzuladen: <color=#CCCC66><link=\"https://account.arena.net/welcome\">Guild
+      Wars 2</link></color>)\n  2) Gehe zum <b>Men\xFC</b> (dr\xFCcke Escape) und
+      dann auf <b>Optionen</b>.\n  3) Grafikoptionen -> Aufl\xF6sung -> Vollbild
+      im Fenster\n  4) Soundoptionen -> Deaktivieren \"Stumm schalten, wenn GW2 im
+      Hintergrund l\xE4uft\"\n  5) Fertig! Klicke auf Weiter."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36344188051562496
+    m_Localized: Du hast WARP installiert!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36344365143465984
+    m_Localized: "Danke, dass Du WARP installiert hast!\n\nDu kannst jetzt auf das
+      X klicken, um dieses Fenster zu schlie\xDFen.\nUm es wieder zu \xF6ffnen, klicken
+      Sie einfach nur auf das <b><sprite index=2> oben links</ b>.\n\nWir sehen uns
+      in Tyria!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346018752012288
+    m_Localized: Feedback abschicken
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346314110705664
+    m_Localized: "Danke, dass du WARP benutzt!\n\n<sprite name=arrow><b>F\xFClle
+      deinen Charakterbogen aus!</b>\nKlicke auf <sprite name=helmet> und f\xFClle
+      deine Charakterinformationen aus. Vergiss nicht, auch die \"\xDCber mich\"-Info
+      mit deinen RP-Vorlieben auszuf\xFCllen!\n\n\n<sprite name=arrow><b>Zeige auf
+      andere, um ihren Charakterbogen zu lesen!</b>\nBewege deine Maus kurz \xFCber
+      andere Spieler, um deren Charakterb\xF6gen zu lesen.\n\n\n<sprite name=arrow><b>Finde
+      RP!</b>\nAndere RPler werden auf deiner Karte angezeigt. Tritt ihrer Parallelwelt
+      (IP) bei, indem du auf die Schaltfl\xE4che \"Welt beitreten\" in der Spielerliste
+      klickst <sprite name=search>.\n\n\n<sprite name=arrow><b>Gib uns dein Feedback!</b>\nBenutze
+      das Feedback-Formular <sprite name=present>, oder poste es auf <color=#CCCC66><link=https://discord.gg/ctrUDkBWDg>Discord</link></color>!\n\n\n<sprite
+      name=arrow><b>Lade deine Freunde ein! <sprite name=heart></b>\nWARP l\xE4sst
+      sich leichter mit jemandem testen, dessen Profil du dir ansehen kannst. Schicke
+      Freunden den <color=#CCCC66><link=https://gw2warp.com>gw2warp.com</link></color>
+      Link, um WARP gemeinsam zu erkunden!\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346505010257920
+    m_Localized: 'Bugs gefunden, dein Antivirus mag WARP nicht, oder du willst uns
+      etwas anderes mitteilen?
+
+      Du bist am richtigen Ort!
+
+
+      Du kannst
+      Feedback auch direkt auf unserem <color=#CCCC66><link=https://discord.gg/ctrUDkBWDg>Discord</link></color>
+      schreiben.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346694118842368
+    m_Localized: Senden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36346919633985536
+    m_Localized: Charakter-Infos
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347006565130240
+    m_Localized: "\xDCber mich"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347160965849088
+    m_Localized: Auf den ersten Blick<sprite index=1>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347284706205696
+    m_Localized: Bearb.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347383402373120
+    m_Localized: "Bekannt f\xFCr..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347486330593280
+    m_Localized: Beschreibung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347664659816448
+    m_Localized: Verwerfen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36347778593890304
+    m_Localized: Speichern
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348314755964928
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348444418678784
+    m_Localized: "Erz\xE4hl anderen von dir! Zeige auf die \xDCberschriften f\xFCr
+      extra Infos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348574219804672
+    m_Localized: RP-Erfahrung<sprite index=1>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348663776583680
+    m_Localized: Kampfstil<sprite index=1>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348723293757440
+    m_Localized: "Inhalte f\xFCr Erwachsene<sprite index=1>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348817640431616
+    m_Localized: Lore-Strenge<sprite index=1>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348890537435136
+    m_Localized: offen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36348951975600128
+    m_Localized: strikt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349048050327552
+    m_Localized: Thema<sprite index=1>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349112718106624
+    m_Localized: Abenteuer
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349167214698496
+    m_Localized: Alltag
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349254389112832
+    m_Localized: realistisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349376703406080
+    m_Localized: Stil<sprite index=1>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349441887084544
+    m_Localized: phantastisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349524464541696
+    m_Localized: "Post-L\xE4nge<sprite index=1>"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349556450304000
+    m_Localized: lang
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349633659052032
+    m_Localized: kurz
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36349770879901696
+    m_Localized: Beispiel-Post<sprite index=1>
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36357618141667328
+    m_Localized: Online-Liste
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36357988226080768
+    m_Localized: Name
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358036045340672
+    m_Localized: Karte
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358102239846400
+    m_Localized: Welt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358322923151360
+    m_Localized: Einstellungen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358488900149248
+    m_Localized: Melden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358578901524480
+    m_Localized: "\xDCber"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358851497730048
+    m_Localized: WARP neustarten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36358935786463232
+    m_Localized: Beenden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359277051813888
+    m_Localized: Melde Spieler*In
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359432450777088
+    m_Localized: Spielername
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359533076324352
+    m_Localized: Gemeldeter Text
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359690924761088
+    m_Localized: "Grund f\xFCr Meldung"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36359790166188032
+    m_Localized: Ihre Anmerkung.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36360270325915648
+    m_Localized: "Erfahren Sie mehr \xFCber WARP auf der offiziellen Website: <color=#CCCC66><link=\"https://gw2warp.com\">gw2warp.com</link></color>\n\nWARP
+      ist ein ToS-freundliches, kostenloses, inoffizielles Rollenspiel-Overlay f\xFCr
+      Guild Wars 2.\nWir wollen das Rollenspiel in GW2 besser und einfacher machen
+      und neue Spieler in die Rollenspiel-Community einf\xFChren. \n\nWARP ist nicht
+      mit ArenaNet oder einem seiner Partner verbunden.\nAlle Grafiken geh\xF6ren
+      ArenaNet, sofern nicht anders angegeben.\n\n<sprite index=0> Danke <sprite
+      index=0>\n\n...an unsere \xDCbersetzer, <b>Shon</b> (Spanisch), <b>Nakasar</b>
+      (Franz\xF6sisch) und and<color=#CCCC66> <link=\"https://www.deepl.com/translator\">DeepL</link></color>!\n...an
+      die Beta-Tester!\n...an die Rollenspiel-Community, die mich dazu inspiriert
+      hat, WARP zu erstellen.\n...an meine RP-Gruppe, die sich freiwillig gemeldet
+      hat, um fr\xFChe fehlerhafte Versionen von WARP zu testen.\n...an die GW2-Overlay-Entwicklergemeinschaft
+      f\xFCr die Hilfe und die Vorarbeit.\n\n...an <b>Freesn\xF6w</b>, weil er BlishHUD
+      als Open Source ver\xF6ffentlicht hat, was ungemein hilfreich war.\nWenn ihr
+      ein tolles Overlay f\xFCr alles au\xDFer RP wollt, oder eure eigenen Module
+      entwickeln wollt, schaut auf:\n<sprite name=blish> <color=#CCCC66><link=\"https://blishhud.com/\">BlishHUD.com</link></color>
+      <sprite name=blish>\n\nEin gro\xDFes Dankesch\xF6n an ArenaNet f\xFCr...\n...ein
+      gro\xDFartiges Spiel zu entwickeln.\n...f\xFCr die Bereitstellung der APIs,
+      die notwendig sind, um Projekte wie WARP zu erstellen.\n...ein faires F2P-Modell,
+      das es einfach macht, neue Spieler in die Community einzuf\xFChren.\n\n- Sunija\n\n*
+      Kauft das Spiel, wenn ihr es noch nicht habt! <3"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36360484780679168
+    m_Localized: 
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36360563763617792
+    m_Localized: "Es wurde kein API-Key f\xFCr dieses Konto auf deinem PC gefunden.
+      Bitte gib ihn ein, um WARP zu verwenden :) <sprite name=\"heart\">\n\n  1)
+      Klicke auf diesen Link: <color=#CCCC66><link=\"https://account.arena.net/applications\n\">https://account.arena.net/applications.</link></color>\n 
+      2) Melde dich mit deinem GW2-Account an\n  3) Klicke auf \"Neuer Schl\xFCssel\"\n 
+      4) W\xE4hle irgendeinen Namen (z. B. \"WARP\")\n  5) W\xE4hle \"account\" und
+      \"characters\"\n  6) Kopiere den Schl\xFCssel\n  7) F\xFCgen ihn in das Feld
+      unten ein\n  8) Dr\xFCcke \"Senden\""
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36361257254035456
+    m_Localized: Warp - World Adventure Rollenspiel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36362618116939776
+    m_Localized: "[\xDCber mich]"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36363129960439808
+    m_Localized: "\xDCber mich..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36364806855761920
+    m_Localized: Auffallendes Merkmal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36365747873030144
+    m_Localized: Welt beitreten
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36366289991016448
+    m_Localized: "Icon ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 36391027287171072
+    m_Localized: Melde Spieler
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41420753986822144
+    m_Localized: "Beschreibe Merkmale, die man auf den ersten Blick bemerken, wie
+      Narben, K\xF6rperhaltung, Schmuck, ein Plot-Item, Geruch, Auftreten, Sonderausstattung,
+      ...\n\n<b>Tipps:</b>\n1) Beschreibe dein Auftreten im ersten Feld. Wie f\xFChlt
+      es sich an, neben dir zu stehen?\n\n2) Konzentriere dich auf das, was *nicht*
+      im Spiel sichtbar ist.\nZ.B. schreibe ob dein Haar gepflegt ist oder nicht.
+      Aber nicht die Haarfarbe, weil die sowieso sichtbar ist.\n\n3) Fokus auf RP-Relevanz.
+      W\xFCrde dich jemand auf diese Eigenschaft ansprechen oder anders reagieren?\n\n<sprite
+      index=10>Beispiel:\n<i>Hochn\xE4sige Adelige - Der genervte Blick, das gelegentliche
+      Seufzen und ihr perfekt reines rosa Kleid machen klar, dass sie auf alles und
+      jeden herabsieht.</i>\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41422090476625920
+    m_Localized: "Wof\xFCr ist dein Charakter daf\xFCr bekannt?\nDas sind Informationen,
+      die jeder wissen k\xF6nnte. Sehr hilfreich, um RP zu starten (\"Hey, bist du
+      nicht diese Goldschmiedin?\") oder dem RP mehr Tiefe zu geben.\n\n<sprite index=10>
+      Beispiele:\n<i> Sie arbeitet als Barmaid im Zerbrochenen Flaschenhals.\n\nEr
+      ist f\xFCr einige vergangene Raub\xFCberf\xE4lle bekannt, wo er alles au\xDFer
+      silberne Wertgegenst\xE4nde gestohlen hat. Anscheinend wurde er wieder freigelassen.</i>\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41422498859229184
+    m_Localized: "Hovere die \xDCberschriften f\xFCr weitere Infos."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41423058748481536
+    m_Localized: "Alles, was die Leute sehen/wissen k\xF6nnen, aber nicht in den
+      oberen Kategorien passt. Wie z.B. zus\xE4tzliche oder detailliertere Informationen,
+      K\xF6rperform, Pronomen, RP-Hooks usw. Nicht deine Hintergrundgeschichte."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41423816948621312
+    m_Localized: "Zeige anderen, dass du neu bist, damit sie extra tolerant sind.
+      ;) Oder dass du Erfahrung hast, damit andere dich um Hilfe bitten k\xF6nnen.\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41423977061982208
+    m_Localized: "<b>Emote:</b> Keine Regeln, ihr verlasst euch auf gegenseitigen
+      Respekt vor den F\xE4higkeiten der Anderen, um Treffer zu ermitteln.\n\n<b>W\xFCrfel:</b>
+      Treffer werden von einem W\xFCrfelsystem bestimmt, auf das ihr euch geeinigt
+      habt.\n\n<b>Beides:</b> Du hast nichts gegen W\xFCrfel, musst sie aber nicht
+      benutzen.\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424246957056000
+    m_Localized: "Zeige anderen, ob du einverstanden bist wenn erwachsene Themen
+      (Gewalt, Erotik, ...) in RP auftauchen.\n<b>ACHTUNG:</b> Du musst \xFCber 18
+      Jahre alt sein, um \"Erwachsen\" auszuw\xE4hlen!\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424468969955328
+    m_Localized: "<b>Offen</b>\nDu hast nichts dagegen, die Lore zu erweitern/beugen,
+      wenn es das RP interessanter macht. Neue Zauber, Fl\xFCche oder vielleicht
+      sogar einen Charakter, der einem Vampir \xE4hnelt? Alles in Ordnung, solange
+      es interessant ist. Das erleichtert es auch Neuank\xF6mmlingen, die sich nicht
+      in die Lore einlesen konnten.\n+ Mehr M\xF6glichkeiten\n+ Einfacher, Plots
+      zu erstellen\n+ Weniger Vorbereitung n\xF6tig\n\n<b>Strikt</b>\nDu magst keine
+      RP-Elemente, die noch nicht in GW2-Lore vorgekommen sind, oder in Tyria sehr
+      selten w\xE4ren. Du kommst mit weniger Plots klar, solange sie perfekt in die
+      Welt von GW2 passen.\n+ Konsistenz\n+ Immersion\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424585592578048
+    m_Localized: "<b>Abenteuer</b>\nDu willst, dass aufregende Dinge passieren! Wie
+      Fantasy-Romane oder Pen & Paper-Spiele: mit einem Plot, gelegentlichen K\xE4mpfen
+      und (IC-)Drama! Wenn du zu einer Teeparty eingeladen wirst, erwartest du, dass
+      ein Mord passieren wird. Oder etwas \xE4hnlich spannendes.\n\n<b>Alltag</b>\nDu
+      magst es, einen erholsamen Abend in der Taverne zu genie\xDFen, \xFCber das
+      Leben zu sprechen und das Ambiente zu genie\xDFen. Meistens h\xE4lst du dich
+      aus Schwierigkeiten ruas. Wenn du zu einer Teeparty eingeladen wirst, erwartest
+      du Tee.\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424693625266176
+    m_Localized: "<b>Phantastisch</b>\nDu willst epische Geschichten erleben, ohne
+      von der Realit\xE4t zur\xFCckgehalten zu werden. Es ist schlie\xDFlich Fantasy.
+      Wenn du am Ende der Welt einen B\xF6sewicht besiegen willst, teleportierst
+      du dich hin, bek\xE4mpfst Horden von Feinden und besiegst die Schurkin. Deine
+      Feuerball-Verletzung heilt \xFCber Nacht, damit du morgen auf ein neues Abenteuer
+      kannst!\n\n<b>Realistisch</b>\nDu genie\xDFen die Details, die bei realistischem
+      RP entstehen. Wenn du am Ende der Welt einen B\xF6sewicht besiegen willst,
+      bereiten du die Reise vor, RPst an Stationen auf deiner Reise und schleichst
+      dich an den \xFCberw\xE4ltigenden Feindes-Horden vorbei. Wenn du zum ersten
+      Mal jemanden t\xF6test, ist das ein traumatisches Erlebnis, und deine Feuerball-Verletzung
+      wird Narben hinterlassen, die dein RP auf Jahre beeinflussen.\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424794292756480
+    m_Localized: "<b>Kurz</b>\nDu magst dein RP schnell und interaktiv. Um sicherzustellen,
+      dass alle geh\xF6rt werden, w\xFCrdest du lieber schnell einen Post retconnen,
+      als auf eine laaaangsame Post-Reihenfolge zu warten.\n\n<b>Lang</b>\nDu magst
+      Posts mit Details und ausgekl\xFCgelten Formulierungen. So kannst du auf Details
+      eingehen, die in kurzen Beitr\xE4gen verloren gehen w\xFCrden.\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 41424968557699072
+    m_Localized: "Ein Post sagt mehr als tausend Slider!\nKopiere entweder einen
+      Post von deinem RP hier rein, oder antworten auf eine ausgedachte Situation.\n\n<sprite
+      index=10>Beispiel:\n<i><als der Barkeeper sie bittet, ihr Getr\xE4nk zu bezahlen>\nAwww,
+      muss ich? <Sie macht gro\xDFe Kugelaugen, die nicht mit ihrer neunmalklugen
+      Art von zuvor passen> Wie w\xE4re es, wenn ich lieber beim n\xE4chsten Besuch
+      doppelt zahle?</i>\n"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47684194951143424
+    m_Localized: Englisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47685303434387456
+    m_Localized: Deutsch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47685319305633792
+    m_Localized: "Franz\xF6sisch"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47685328583434240
+    m_Localized: Spanisch
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695816016961536
+    m_Localized: 30
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695818969751552
+    m_Localized: 60
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695819703754752
+    m_Localized: 120
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695820492283904
+    m_Localized: 144
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695822912397312
+    m_Localized: 100%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695914998341632
+    m_Localized: 125%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695916822863872
+    m_Localized: 150%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695918001463296
+    m_Localized: 175%
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695918777409536
+    m_Localized: Nordamerika
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695919700156416
+    m_Localized: Europa
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47695922124464128
+    m_Localized: Spieler melden
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696369715421184
+    m_Localized: Gerade losgelegt
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696370495561728
+    m_Localized: "Anf\xE4nger"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696371284090880
+    m_Localized: Mittel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696372143923200
+    m_Localized: Erfahren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696551714660352
+    m_Localized: Emote
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696552956174336
+    m_Localized: "W\xFCrfel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696554185105408
+    m_Localized: Beides
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696555447590912
+    m_Localized: Teenager
+    m_Metadata:
+      m_Items: []
+  - m_Id: 47696560359120896
+    m_Localized: Erwachsen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335479035568128
+    m_Localized: Frage '{0}' nach Welt-Taxi...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335536333955072
+    m_Localized: Ok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335539404185600
+    m_Localized: Spieler '{0}' ist nicht mehr online.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335543313276928
+    m_Localized: "{0}' fragt nach einem IP-Teleport.\nDr\xFCcke 'Ok' um sie einzuladen,
+      damit sie sich in deine Parallelwelt teleportieren kann."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335696497647616
+    m_Localized: Ablehnen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335698196340736
+    m_Localized: "{0}' akzeptiert deine Anfrage!\nAkzeptiere ihre Gruppeneinladung,
+      klicke rechts-klicke ihr Portr\xE4t und dann auf \"XXX beitreten\"."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335699458826240
+    m_Localized: '{0}'' hat deine Anfrage abgelehnt. :(
+
+      Frage einfach jemanden
+      anderen. <3'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335700440293376
+    m_Localized: 'Timeout!
+
+      Leider konnte dein Feedback nicht gesendet werden.
+      Bitte poste es auf Discord oder kopiere es, starte WARP neu und versuche es
+      nochmal.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335990761627648
+    m_Localized: "Feedback erfolgreich gesendet. Vielen Dank f\xFCr dein Feedback!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335993047523328
+    m_Localized: 'Feedback fehlgeschlagen.
+
+      {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335994624581632
+    m_Localized: 'Timeout!
+
+      Leider konnte dein Spot nicht gesendet werden.
+      Bitte versuche es erneut.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48335996386189312
+    m_Localized: "Spot erfolgreich eingereicht. Vielen Dank f\xFCr deinen Beitrag!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336019790405632
+    m_Localized: 'Spot speichernfehlgeschlagen.
+
+      {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336022021775360
+    m_Localized: 'Timeout! \nSorry, deine Meldung konnte nicht gesendet werden. :(
+
+      Bitte
+      kopieren sie, starten WARP neu und versuche es nochmal.'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336024274116608
+    m_Localized: "Meldung erfolgreich gesendet. Vielen Dank f\xFCr deine Meldung!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336288326524928
+    m_Localized: 'Meldung fehlgeschlagen.
+
+      {0}'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336289060528128
+    m_Localized: "M\xF6chten du deine Meldung wirklich verwerfen?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336289786142720
+    m_Localized: Ja
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336290612420608
+    m_Localized: Nein
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336291451281408
+    m_Localized: "M\xF6chtest du deine \xC4nderungen wirklich verwerfen?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336292340473856
+    m_Localized: "M\xF6chtest du deine \xC4nderungen wirklich verwerfen?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336293238054912
+    m_Localized: Patcher konnte nicht in {0} gefunden werden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48336294156607488
+    m_Localized: "Desktop-Verkn\xFCpfung erstellt."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687252707385344
+    m_Localized: RP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687253361696768
+    m_Localized: "Mini-Charlist \xF6ffnen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687254078922752
+    m_Localized: Technik
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687254871646208
+    m_Localized: "Desktopverkn\xFCpfung erstellen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687286039519232
+    m_Localized: Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687287402668032
+    m_Localized: UI-Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687289097166848
+    m_Localized: "Espa\xF1ol von Shon, Fran\xE7ais von Nakasar"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687290556784640
+    m_Localized: RP-Sprache
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687416813723648
+    m_Localized: Region
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687420156583936
+    m_Localized: Sonstiges
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687420890587136
+    m_Localized: Auf Karte unsichtbar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687421540704256
+    m_Localized: In Online-Liste unsichtbar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687422266318848
+    m_Localized: FPS begrenzen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687423008710656
+    m_Localized: "Lautst\xE4rke"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687423793045504
+    m_Localized: Starte WARP mit GW2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687427735691264
+    m_Localized: Debug-Kategorie anzeigen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687526813540352
+    m_Localized: Symbol-Verschiebung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687527753064448
+    m_Localized: DPI-Skalierung
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48687529053298688
+    m_Localized: Zeige Char-Sheet bei Hover
+    m_Metadata:
+      m_Items: []
+  - m_Id: 134135317920129024
+    m_Localized: "Filtere Icons nach\n<sprite index=10> Tag (z.B. food)\n<sprite
+      index=10> Name (z.B. carrot)\n<sprite index=10> ID (z.B. 62859)\n\nTipps:\n<sprite
+      index=10> Rechtsklick + Vergleichen zeigt Icons ganz oben in deiner Liste an\n<sprite
+      index=10> Klicke auf Tags um sie hinzuzuf\xFCgen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 134470982503407616
+    m_Localized: Kann nicht verbinden.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 134471014224928768
+    m_Localized: "Der WARP-Server k\xF6nnte offline sein. Erfahre mehr auf unserem
+      <color=#CCCC66><link=https://discord.gg/ctrUDkBWDg>Discord</link></color>.
+      (Fehlgeschlagene Versuche: {0})"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137732636494176256
+    m_Localized: Notizen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137732665900441600
+    m_Localized: "Platz f\xFCr Notizen \xFCber deinen Charakter (z.B. Inventar, Zustand,
+      Tagebuch, Hintergrundgeschichte, aktuelle Ziele,...). Nicht sichtbar f\xFCr
+      andere."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137732723265937408
+    m_Localized: 200%
+    m_Metadata:
+      m_Items:
+      - id: 0
+  - m_Id: 137734154953859072
+    m_Localized: 225%
+    m_Metadata:
+      m_Items:
+      - id: 1
+  - m_Id: 137734185509363712
+    m_Localized: 250%
+    m_Metadata:
+      m_Items:
+      - id: 2
+  - m_Id: 137735616903684096
+    m_Localized: "Fenster zur\xFCcksetzen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736168152670208
+    m_Localized: Tag-Liste zeigen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736206346002432
+    m_Localized: Tag-Liste
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736581744599040
+    m_Localized: Suche...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736596139450368
+    m_Localized: Kopiere ID
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736612119748608
+    m_Localized: Vergleichen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736627550593024
+    m_Localized: Infos kopieren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736657829273600
+    m_Localized: Infos kopieren
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736675894140928
+    m_Localized: "Kopiere die Charakter-Infos von einem anderen Charakter. Deine
+      Infos werden erst \xFCberschrieben, wenn du \"Speichern\" dr\xFCckst."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137736696144240640
+    m_Localized: Abbrechen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137745644427583488
+    m_Localized: "Icon ausw\xE4hlen"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137771011959857152
+    m_Localized: "Fl\xFCstern"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137771011964051456
+    m_Localized: In Gruppe einladen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 137813155537920000
+    m_Localized: "\xC4nderungen wirklich verwerfen?"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1
+    00000000:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 137732723265937408
+    00000001:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 137734154953859072
+    00000002:
+      type: {class: Comment, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_CommentText: 137734185509363712

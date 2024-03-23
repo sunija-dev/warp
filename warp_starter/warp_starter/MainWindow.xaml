@@ -1,0 +1,21 @@
+﻿<Window x:Class="warp_starter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        xmlns:local="clr-namespace:warp_starter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="600">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/images/warp_only_white.png" Stretch="Fill" />
+    </Window.Background>
+
+    <Grid>
+        <Image HorizontalAlignment="Left" Height="93" Margin="156,256,0,0" VerticalAlignment="Top" Width="89" Source="images/icon_warp_starter.png" RenderTransformOrigin="-0.24,-0.012"/>
+        <TextBlock x:Name="textStartWarp" HorizontalAlignment="Left" Margin="250,289,0,282" TextWrapping="Wrap" Text="Starting WARP..." VerticalAlignment="Center" Height="29" Width="213" FontSize="18"/>
+
+    </Grid>
+</Window>

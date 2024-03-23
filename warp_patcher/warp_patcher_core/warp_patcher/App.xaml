@@ -1,0 +1,9 @@
+﻿<Application x:Class="warp_patcher_ui.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:warp_patcher_ui"
+             Startup="Application_Startup">
+    <Application.Resources>
+        <FontFamily x:Key="menomonia">pack://application:,,,/fonts/#menomonia</FontFamily>
+    </Application.Resources>
+</Application>

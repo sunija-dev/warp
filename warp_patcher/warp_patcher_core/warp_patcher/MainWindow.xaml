@@ -1,0 +1,28 @@
+﻿<Window x:Class="warp_patcher_ui.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStyle="None"
+        AllowsTransparency="True"
+        xmlns:local="clr-namespace:warp_patcher_ui"
+        mc:Ignorable="d"
+        Title="WARP Patcher" Height="976" Width="1131">
+
+    <Window.Background>
+        <ImageBrush ImageSource="/images/warp_patcher_bg_customized_white.png" Stretch="Fill" />
+    </Window.Background>
+
+    <Grid>
+        <Label Content="Guild Wars 2 - Unofficial Roleplay Addon" HorizontalAlignment="Left" Margin="54,272,0,0" VerticalAlignment="Top" FontSize="16" x:Name="textTitle"/>
+        <Label Content="Graphics are ©2021 ArenaNet, LLC. All rights reserved. All trademarks are the property of their respective owners." HorizontalAlignment="Left" Margin="54,624,0,0" VerticalAlignment="Top"/>
+        <Label Content="WARP is a fan-made overlay for Guild Wars 2. It is not associated in any way with ArenaNet, LLC." HorizontalAlignment="Left" Margin="54,608,0,0" VerticalAlignment="Top" x:Name="textDisclaimer"/>
+        <TextBlock HorizontalAlignment="Left" Margin="54,560,0,0" TextWrapping="Wrap" Text="Starting..." VerticalAlignment="Top" Height="24" Width="325" x:Name="textFeedback"/>
+        <Image HorizontalAlignment="Left" Height="7" Margin="54,582,0,0" VerticalAlignment="Top" Width="504" Source="images/loading_bar_blue.png" Stretch="Fill" />
+        <Image HorizontalAlignment="Left" Height="7" Margin="54,582,0,0" VerticalAlignment="Top" Width="36" Source="images/loading_bar_pink.png" Stretch="Fill" x:Name="imgFill"/>
+        <Button Name="btn5" Margin="904,176,205,776" Background="Transparent" BorderBrush="Transparent" Click="ButtonClose_Click">
+            <Image Source="images/close.png"/>
+        </Button>
+        <TextBlock HorizontalAlignment="Left" Margin="54,536,0,0" TextWrapping="Wrap" Text="Downloading WARP updates. Please wait..." VerticalAlignment="Top" Height="24" Width="325" FontSize="16" x:Name="textInfo"/>
+    </Grid>
+</Window>

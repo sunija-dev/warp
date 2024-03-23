@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>warp_icon_full.ico</ApplicationIcon>
+    <Authors>gw2warp</Authors>
+    <Company>gw2warp</Company>
+    <Description>Patcher for WARP, the unofficial roleplaying overlay for Guild Wars 2.</Description>
+    <PackageProjectUrl>https://gw2warp.com</PackageProjectUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="images\close.png" />
+    <None Remove="images\loading_bar_blue.png" />
+    <None Remove="images\loading_bar_pink.png" />
+    <None Remove="images\warp_patcher_bg.png" />
+    <None Remove="images\warp_patcher_bg_customized.png" />
+    <None Remove="images\warp_patcher_bg_customized_white.png" />
+    <None Remove="warp_icon_full.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="images\close.png" />
+    <Resource Include="images\loading_bar_blue.png" />
+    <Resource Include="images\loading_bar_pink.png" />
+    <Resource Include="images\warp_patcher_bg.png" />
+    <Resource Include="images\warp_patcher_bg_customized.png" />
+    <Resource Include="images\warp_patcher_bg_customized_white.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="warp_icon_full.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+</Project>
