@@ -37,6 +37,7 @@ public class WindowSettings : MonoBehaviour
         AddSettingToggle(Settings.OptionKey.bHideOnMap);
         AddSettingToggle(Settings.OptionKey.bHideInOnlineList);
         AddSettingToggle(Settings.OptionKey.bShowCharSheetOnHover);
+        AddSettingToggle(Settings.OptionKey.bMakeWikiMapAvailable);
         AddSettingButton("settings_open_minicharlist", CloseCharListWindow.Instance.Show);
         AddSettingButton("reset_windows", ClientManager.Instance.ResetWindows);
 

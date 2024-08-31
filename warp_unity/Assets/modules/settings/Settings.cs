@@ -30,7 +30,8 @@ public class Settings
         iDisplayLanguage,
         fCloseCharListPosX,
         fCloseCharListPosY,
-        bShowCharSheetOnHover
+        bShowCharSheetOnHover,
+        bMakeWikiMapAvailable
     }
 
     public bool bLoaded = false;
@@ -75,6 +76,7 @@ public class Settings
         WriteString(OptionKey.strVersion, Application.version, true);
         WriteInt(OptionKey.iDisplayLanguage, (int)GlobalEnums.Language.en, true);
         WriteBool(OptionKey.bShowCharSheetOnHover, true, true);
+        WriteBool(OptionKey.bMakeWikiMapAvailable, false, true);
     }
 
     private void WriteDefaultConfig()

@@ -62,12 +62,17 @@ public class WikiMap : MonoBehaviour
                 Region region = new Region();
                 region.iID = int.Parse(jobjRegion["id"].ToString());
                 if (liRegions.Any(x => x.iID == region.iID))
-                    continue;
-
-                liRegions.Add(region);
-                region.strName = jobjRegion["name"].ToString();
-                region.v2Coord.x = int.Parse(jobjRegion["label_coord"][0].ToString());
-                region.v2Coord.y = int.Parse(jobjRegion["label_coord"][1].ToString());
+                {
+                    Debug.Log($"Region {region.iID} ({jobjRegion["name"]}) already exists as {liRegions.First(x => x.iID == region.iID).strName} ");
+                    region = liRegions.First(x => x.iID == region.iID);
+                }
+                else
+                {
+                    liRegions.Add(region);
+                    region.strName = jobjRegion["name"].ToString();
+                    region.v2Coord.x = int.Parse(jobjRegion["label_coord"][0].ToString());
+                    region.v2Coord.y = int.Parse(jobjRegion["label_coord"][1].ToString());
+                }
 
                 //JArray jarMaps = JArray.Parse(jobjRegion["maps"].ToString());
                 Dictionary<int, JObject> dictMaps = JsonConvert.DeserializeObject<Dictionary<int, JObject>>(jobjRegion["maps"].ToString());
@@ -76,24 +81,31 @@ public class WikiMap : MonoBehaviour
                     JObject jobjMap = kvpMap.Value;
                     Map map = new Map();
                     map.iID = int.Parse(jobjMap["id"].ToString());
+                    //if (liMaps.Any(x => x.iID == map.iID))
+                    //    continue;
+
                     if (liMaps.Any(x => x.iID == map.iID))
-                        continue;
-
-                    if (!region.liMaps.Any(x => x == map.iID))
-                        region.liMaps.Add(map.iID);
-
-                    liMaps.Add(map);
-                    map.strName = jobjMap["name"].ToString();
-
-                    if (jobjMap["label_coord"] != null)
-                    {
-                        map.v2Coord.x = int.Parse(jobjMap["label_coord"][0].ToString());
-                        map.v2Coord.y = int.Parse(jobjMap["label_coord"][1].ToString());
-                    }
-                    else if (jobjMap["continent_rect"] != null)
                     { 
-                        map.v2Coord.x = (int.Parse(jobjMap["continent_rect"][0][0].ToString()) - int.Parse(jobjMap["continent_rect"][1][0].ToString())) / 2f;
-                        map.v2Coord.y = (int.Parse(jobjMap["continent_rect"][0][1].ToString()) - int.Parse(jobjMap["continent_rect"][1][1].ToString())) / 2f;
+                        map = liMaps.First(x => x.iID == map.iID);
+                    }
+                    else
+                    {
+                        if (!region.liMaps.Any(x => x == map.iID))
+                            region.liMaps.Add(map.iID);
+
+                        liMaps.Add(map);
+                        map.strName = jobjMap["name"].ToString();
+
+                        if (jobjMap["label_coord"] != null)
+                        {
+                            map.v2Coord.x = int.Parse(jobjMap["label_coord"][0].ToString());
+                            map.v2Coord.y = int.Parse(jobjMap["label_coord"][1].ToString());
+                        }
+                        else if (jobjMap["continent_rect"] != null)
+                        {
+                            map.v2Coord.x = (int.Parse(jobjMap["continent_rect"][0][0].ToString()) - int.Parse(jobjMap["continent_rect"][1][0].ToString())) / 2f;
+                            map.v2Coord.y = (int.Parse(jobjMap["continent_rect"][0][1].ToString()) - int.Parse(jobjMap["continent_rect"][1][1].ToString())) / 2f;
+                        }
                     }
 
                     //JArray jarPOIs = JArray.Parse(jobjMap["points_of_interest"].ToString());
@@ -309,7 +321,7 @@ public class WikiMap : MonoBehaviour
             foreach (Section sectionSub in sectionEverything.liSubSections)
                 SplitSection(sectionSub, "===");
 
-            List<string> liUnwantedSections = new List<string> { "Events", "NPCs", "Objects", "Crafting resources", "Map completed", "Locations", "Interactive map", "Gallery" };
+            List<string> liUnwantedSections = new List<string> { "Events", "NPCs", "Objects", "Crafting resources", "Map completed", "Locations", "Interactive map", "Gallery", "Walkthrough", "Locations and objectives" };
             //List<string> liWantedSections = new List<string> { "Notes", "Trivia" };
 
             sectionEverything.Cull(liUnwantedSections);
@@ -317,6 +329,7 @@ public class WikiMap : MonoBehaviour
             string strText = sectionEverything.strCombined();
 
             // shorten (characters and lines)
+            bool bExceedsLength = strText.Length > 800;
             strText = strText.Substring(0, Mathf.Min(800, strText.Length));
             using (StringReader reader = new StringReader(strText))
             {
@@ -333,8 +346,14 @@ public class WikiMap : MonoBehaviour
                         break;
                 }
 
+                // remove last \n and replace wtih "...\n"
+                if (bExceedsLength)
+                    strOutput = strOutput.Substring(0, strOutput.Length - 1) + "...\n";
+
                 strText = strOutput;
             }
+
+            
 
             _entry.strWikiText = strText;
         }

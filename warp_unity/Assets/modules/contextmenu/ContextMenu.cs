@@ -12,6 +12,7 @@ using UnityEngine.InputSystem;
 /// </summary>
 public class ContextMenu : MonoBehaviour, IPointerClickHandler, IPointerDownHandler, IPointerUpHandler
 {
+    public bool bOnlyWorkWithRightClick = false;
     private List<Option> liOptions = new List<Option>();
     private GameObject goContextMenuWindow;
 
@@ -48,6 +49,8 @@ public class ContextMenu : MonoBehaviour, IPointerClickHandler, IPointerDownHand
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (bOnlyWorkWithRightClick && eventData.button != PointerEventData.InputButton.Right)
+            return;
         Open();
     }
 

@@ -200,17 +200,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 36343868235882496
-    m_Localized: "Opciones de configuraci\xF3n"
+    m_Localized: Opciones de sonido (opcional)
     m_Metadata:
       m_Items: []
   - m_Id: 36343932719112192
-    m_Localized: "To see WARP in GW2, you have to change some options.\n\n  1) Abre
-      Guild Wars 2. \n    (\xBFA\xFAn no lo instalas? Click aqu\xED para descargar:
-      <color=#CCCC66><link=\"https://account.arena.net/welcome\">Descargar Guild
-      Wars 2</link></color>)\n  2) Ve al <b>Men\xFA</b> (Presiona Esc) y luego ve
-      a <b>Opciones</b>.\n  3) Opciones gr\xE1ficas -> Resoluci\xF3n -> Pantalla
-      completa en ventana\n  4) Opciones de sonido -> Desmarca \"Silenciar con GW2
-      de fondo\"\n  5) \xA1Listo! Haz click en \"Continuar\"."
+    m_Localized: "(Opcional) La m\xFAsica de GW2 se detendr\xE1 mientras editas texto
+      en GW2. Puedes mantener la m\xFAsica reproduci\xE9ndose con la siguiente configuraci\xF3n:\n\n 
+      1) Ve al <b>Men\xFA</b> (presiona escape) y luego a <b>Opciones</b>.\n  2)
+      Opciones de sonido -> Desmarcar \"Silenciar cuando GW2 est\xE1 en segundo plano\".\n 
+      3) \xA1Listo! Haz clic en continuar."
     m_Metadata:
       m_Items: []
   - m_Id: 36344188051562496

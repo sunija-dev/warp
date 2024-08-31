@@ -10,6 +10,9 @@ using UnityEngine.Networking;
 
 /// <summary>
 /// Mostly for creating the icon db.
+/// First run with "Update Api Cache" enabled, then "Parse API", then "Download Icons", then "Parse API" again.
+/// You might need to delete the entries of "icondb_generated" in the resources folder to make it work.
+/// And yes, sadly this whole progress is kinda messy. :/
 /// </summary>
 public class IconDB : MonoBehaviour
 {
@@ -20,6 +23,9 @@ public class IconDB : MonoBehaviour
     public bool m_bUpdateApiCache = false;
     public bool m_bParseApi = false;
     public bool m_bDownloadIcons = false;
+    [Space]
+    public int m_iMaxDownloadsAtATime = 100; //default 100
+    public bool m_bRedownloadAllIcons = false;
 
     private string m_strCachePath = "[set in start]";
 
@@ -47,7 +53,9 @@ public class IconDB : MonoBehaviour
         OutputFile outputFile = JsonConvert.DeserializeObject<OutputFile>(textAssetDB.text);
         s_dictIcons = outputFile.dictIcons;
         liTags = outputFile.liTags;
-        liTags.Add("untagged");
+        if (!liTags.Contains("untagged"))
+            liTags.Add("untagged");
+
 
         for (int i = 0; i < liTags.Count; i++)
         {
@@ -111,7 +119,7 @@ public class IconDB : MonoBehaviour
     public IEnumerator coDownloadAllIcons()
     {
         Debug.Log("Started downloading icons.");
-        int iMaxDownloadsAtATime = 100;
+        int iMaxDownloadsAtATime = m_iMaxDownloadsAtATime;
         string strFolder = $"{Application.dataPath}/../icons_download/";
         if (!Directory.Exists(strFolder))
             Directory.CreateDirectory(strFolder);
@@ -125,7 +133,9 @@ public class IconDB : MonoBehaviour
             if (iCurrentDownload % 1000 == 0)
                 Debug.Log($"Downloading icon {iCurrentDownload}/{s_dictIcons.Count}");
 
-            dictRunningDownloads[kvpIcon.Key] = StartCoroutine(coDownloadFile(kvpIcon.Value.strLink, strFolder));
+            if ((m_bRedownloadAllIcons || !File.Exists($"{strFolder}/{kvpIcon.Key}.png"))
+                && !string.IsNullOrEmpty(kvpIcon.Value.strLink))
+                dictRunningDownloads[kvpIcon.Key] = StartCoroutine(coDownloadFile(kvpIcon.Value.strLink, strFolder));
 
             while (dictRunningDownloads.Count >= iMaxDownloadsAtATime)
             {
@@ -148,6 +158,7 @@ public class IconDB : MonoBehaviour
         yield return StartCoroutine(ParseSimple("outfits", "outfit"));
         yield return StartCoroutine(ParseSimple("pets", "pet"));
         yield return StartCoroutine(ParseSkills());
+        yield return StartCoroutine(ParseSimple("homestead_decorations", "homestead"));
 
         // remove duplicate names
         foreach (KeyValuePair<int, IconEntry> kvpEntry in s_dictIcons)
@@ -469,17 +480,32 @@ public class IconDB : MonoBehaviour
 
     private IEnumerator coDownloadFile(string _strUrl, string _strFolder)
     {
+        if (string.IsNullOrEmpty(_strUrl))
+            yield break;
+
         UnityWebRequest webRequest = new UnityWebRequest(_strUrl);
         webRequest.method = UnityWebRequest.kHttpVerbGET;
         string strFilePath = Path.Combine(_strFolder, Path.GetFileName(_strUrl));
-        DownloadHandlerFile downloadHandler = new DownloadHandlerFile(strFilePath);
-        downloadHandler.removeFileOnAbort = true;
-        webRequest.downloadHandler = downloadHandler;
+
+        try
+        {
+            DownloadHandlerFile downloadHandler = new DownloadHandlerFile(strFilePath);
+            downloadHandler.removeFileOnAbort = true;
+            webRequest.downloadHandler = downloadHandler;
+        }
+        catch
+        (Exception Exception)
+        {
+            Debug.Log(Exception.Message);
+            Debug.Log($"Url: {_strUrl}, folder {_strFolder}");
+        }
+        
 
         yield return webRequest.SendWebRequest();
         if (webRequest.isNetworkError || webRequest.isHttpError)
         {
             Debug.Log(webRequest.error);
+            Debug.Log($"Error2: Url: {_strUrl}, folder {_strFolder}");
         }
     }
 
@@ -495,6 +521,7 @@ public class IconDB : MonoBehaviour
         StartCoroutine(WriteApiInfoToFile("pets"));
         StartCoroutine(WriteApiInfoToFile("skills"));
         StartCoroutine(WriteApiInfoToFile("professions"));
+        StartCoroutine(WriteApiInfoToFile("homestead/decorations"));
     }
 
     private IEnumerator WriteApiInfoToFile(string _strApiName)

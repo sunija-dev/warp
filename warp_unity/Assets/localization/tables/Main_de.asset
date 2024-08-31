@@ -205,17 +205,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 36343868235882496
-    m_Localized: Setup-Optionen
+    m_Localized: Soundoptionen (optional)
     m_Metadata:
       m_Items: []
   - m_Id: 36343932719112192
-    m_Localized: "Um WARP in GW2 zu sehen, musst Du zwei Optionen \xE4ndern.\n\n 
-      1) \xD6ffne Guild Wars 2.\n    (Noch nicht installiert? Klicke hier, um es
-      herunterzuladen: <color=#CCCC66><link=\"https://account.arena.net/welcome\">Guild
-      Wars 2</link></color>)\n  2) Gehe zum <b>Men\xFC</b> (dr\xFCcke Escape) und
-      dann auf <b>Optionen</b>.\n  3) Grafikoptionen -> Aufl\xF6sung -> Vollbild
-      im Fenster\n  4) Soundoptionen -> Deaktivieren \"Stumm schalten, wenn GW2 im
-      Hintergrund l\xE4uft\"\n  5) Fertig! Klicke auf Weiter."
+    m_Localized: "(Optional) Die GW2-Musik stoppt, w\xE4hrend du in GW2 Texte bearbeitest.
+      Du kannst die Musik mit folgender Einstellung weiter abspielen lassen:\n\n 
+      1) Gehe zum <b>Men\xFC</b> (dr\xFCcke Escape) und dann zu <b>Optionen</b>.\n 
+      2) Soundoptionen -> Deaktiviere \"Stummschalten, wenn GW2 im Hintergrund ist\".\n 
+      3) Fertig! Klicke auf Weiter."
     m_Metadata:
       m_Items: []
   - m_Id: 36344188051562496

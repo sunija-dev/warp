@@ -181,6 +181,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba22b2c02182a443b09c53417d5c1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bOnlyWorkWithRightClick: 1
 --- !u!114 &3682662077947321880
 MonoBehaviour:
   m_ObjectHideFlags: 0

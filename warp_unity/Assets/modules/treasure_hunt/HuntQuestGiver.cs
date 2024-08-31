@@ -48,6 +48,7 @@ public class HuntQuestGiver : HuntObject
             ui.input.gameObject.SetActive(false);
 
             MapManager.Instance.bShowWikiButton = true;
+            Settings.WriteBool(Settings.OptionKey.bMakeWikiMapAvailable, true);
             //MapManager.Instance.bShowWikiMap = true;
         }
         else

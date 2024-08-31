@@ -18,7 +18,7 @@ MonoBehaviour:
   quaternionRotation: {x: 0, y: 0, z: 0, w: 0}
   fSpawnDistance: 20
   strComment: below garrenhoff
-  strText: 'I traved where the birds do walk
+  strText: 'I travelled west where the birds do walk
 
-    but humans don''t, and neither
-    talk (4/14)'
+    but humans don''t, and
+    neither talk (4/14)'

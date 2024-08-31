@@ -185,16 +185,14 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 36343868235882496
-    m_Localized: Setup Options
+    m_Localized: Sound Options (optional)
     m_Metadata:
       m_Items: []
   - m_Id: 36343932719112192
-    m_Localized: "To see WARP in GW2, you have to change some options.\n\n  1) Open
-      Guild Wars 2. \n    (Don't have it installed yet? Click here to download: <color=#CCCC66><link=\"https://account.arena.net/welcome\">Download
-      Guild Wars 2</link></color>)\n  2) Go to the <b>Menu</b> (press escape) and
-      then to <b>Options</b>.\n  3) Graphic Options -> Resolution -> Windowed Fullscreen\n 
-      4) Sound Options -> Uncheck \"Mute when GW2 is in the background\"\n  5) You're
-      done! Click continue."
+    m_Localized: "(Optional) The GW2 music will stop while editing text in GW2. You
+      can keep the music playing with the following setting:\n\n  1) Go to the <b>Menu</b>
+      (press escape) and then to <b>Options</b>.\n  2) Sound Options -> Uncheck \"Mute
+      when GW2 is in the background\"\n  3) You're done! Click continue."
     m_Metadata:
       m_Items: []
   - m_Id: 36344188051562496

@@ -47,7 +47,7 @@ public class TopBar : MonoBehaviour
 
     public void UpdatePlacement()
     {
-        rect.sizeDelta = new Vector2(322 + Settings.fRead(Settings.OptionKey.fIconDisplacement) * fIconDisplacementMax, rect.sizeDelta.y);
+        rect.sizeDelta = new Vector2(386 + Settings.fRead(Settings.OptionKey.fIconDisplacement) * fIconDisplacementMax, rect.sizeDelta.y);
         iUiSizeLast = iUiSize;
     }
 

@@ -244,8 +244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   liTags: []
   m_bUpdateApiCache: 0
-  m_bParseApi: 1
-  m_bDownloadIcons: 0
+  m_bParseApi: 0
+  m_bDownloadIcons: 1
+  m_iMaxDownloadsAtATime: 100
+  m_bRedownloadAllIcons: 0
 --- !u!4 &398108102
 Transform:
   m_ObjectHideFlags: 0

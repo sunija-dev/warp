@@ -201,17 +201,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 36343868235882496
-    m_Localized: "Param\xE8tres de d\xE9marrage GW2"
+    m_Localized: Options de son (facultatif)
     m_Metadata:
       m_Items: []
   - m_Id: 36343932719112192
-    m_Localized: "Pour voir WARP dans GW2, tu dois changer quelques options :\n\n1)
-      D\xE9marre Guild Wars 2. (Le jeu n'est pas encore install\xE9 ? Tu peux le
-      t\xE9l\xE9charger ici : <color=#CCCC66><link=\"https://account.arena.net/welcome\">T\xE9l\xE9charger
-      Guild Wars 2</link></color>.)\n 2) Va dans le <b>menu</b> (appuie sur ECHAP\")
-      puis dans <b>Options</b>\n 3) Options graphiques -> R\xE9solution -> Plein
-      \xE9cran fen\xEAtr\xE9\n 4) Options de son -> D\xE9coche \"Passer en mode silencieux
-      lorsque GW2 est en t\xE2che de fond\"\n 5) C'est tout bon ! Clique sur continuer."
+    m_Localized: "(Facultatif) La musique de GW2 s'arr\xEAtera pendant que vous \xE9ditez
+      du texte dans GW2. Vous pouvez garder la musique en jouant avec le param\xE8tre
+      suivant :\n\n  1) Allez dans le <b>Menu</b> (appuyez sur \xC9chap) puis dans
+      <b>Options</b>.\n  2) Options de son -> D\xE9cochez \"Couper le son lorsque
+      GW2 est en arri\xE8re-plan\".\n  3) C'est termin\xE9 ! Cliquez sur Continuer."
     m_Metadata:
       m_Items: []
   - m_Id: 36344188051562496
@@ -355,7 +353,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 36349770879901696
-    m_Localized: Example de message<sprite index=1>
+    m_Localized: Exemple de message<sprite index=1>
     m_Metadata:
       m_Items: []
   - m_Id: 36357618141667328
@@ -473,7 +471,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 36366289991016448
-    m_Localized: "Ic\xF4ne de s\xE9lection"
+    m_Localized: "S\xE9lection d'ic\xF4ne"
     m_Metadata:
       m_Items: []
   - m_Id: 36391027287171072
@@ -908,7 +906,8 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 137732665900441600
     m_Localized: "Un espace pour des notes sur votre personnage (par exemple, inventaire,
-      \xE9tat, journal, histoire, objectifs actuels,...). Non visible par les autres."
+      \xE9tat, journal, histoire, objectifs actuels,...). Les autres joueurs ne voient
+      pas ces notes."
     m_Metadata:
       m_Items: []
   - m_Id: 137735616903684096
@@ -932,7 +931,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137736612119748608
-    m_Localized: Comparez
+    m_Localized: Comparer
     m_Metadata:
       m_Items: []
   - m_Id: 137736627550593024
@@ -944,8 +943,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137736675894140928
-    m_Localized: "Copier la feuille d'un autre personnage. Votre feuille ne sera
-      remplac\xE9e que lorsque vous aurez appuy\xE9 sur \"Enregistrer\"."
+    m_Localized: "Copie la feuille d'un autre personnage. Votre feuille ne sera remplac\xE9e
+      que lorsque vous aurez appuy\xE9 sur \"Enregistrer\"."
     m_Metadata:
       m_Items: []
   - m_Id: 137736696144240640
@@ -961,7 +960,7 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 137813155537920000
-    m_Localized: Vous abandonnez vraiment vos modifications?
+    m_Localized: Annuler vos modifications ?
     m_Metadata:
       m_Items: []
   references:

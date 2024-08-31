@@ -82,6 +82,8 @@ public class MapManager : MonoBehaviour
         if (WorldInfo.InstanceClient == null) // not generated at very start
             return;
 
+        bShowWikiButton = Settings.bRead(Settings.OptionKey.bMakeWikiMapAvailable);
+
         Rebuild();
         canvasMap.gameObject.SetActive(true);
 

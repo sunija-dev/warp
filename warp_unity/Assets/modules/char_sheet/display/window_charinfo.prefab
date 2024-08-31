@@ -150,6 +150,23 @@ MonoBehaviour:
   canvasGroup: {fileID: 1653701263404746634}
   windowAccountInfo: {fileID: 0}
   contextMenuOptions: {fileID: 8244261764862263494}
+  charSheetSelected:
+    strRPName: CharName
+    strRPDesc: 
+    strKnownFor: 
+    liAspects:
+    - strName: 
+      strDesc: 
+      iIconId: 0
+    - strName: 
+      strDesc: 
+      iIconId: 0
+    - strName: 
+      strDesc: 
+      iIconId: 0
+    - strName: 
+      strDesc: 
+      iIconId: 0
 --- !u!225 &1653701263404746634
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -202,10 +219,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a00833ac47044b0468207be94b44cf2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panelRectTransform: {fileID: 4714373880717197200}
   bRememberPosition: 1
   optionPosX: 10
   optionPosY: 11
+  m_fAllowPercentageOffscreen: 0.7
+  m_bStayInWindow: 1
+  rtransPanel: {fileID: 0}
 --- !u!1 &2306225154994550702
 GameObject:
   m_ObjectHideFlags: 0
@@ -621,6 +640,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ba22b2c02182a443b09c53417d5c1d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bOnlyWorkWithRightClick: 0
 --- !u!1 &8244261764863578498
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1059,11 @@ MonoBehaviour:
   goAspectWindowPrefab: {fileID: 4360261914511281241, guid: 27e9d250f7854c541840f6b8a4705701,
     type: 3}
   imgAspectDisplay: {fileID: 8244261765207582272}
+  goHoverPreviewPrefab: {fileID: 0}
+  eventOnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
+  bAllowDragging: 0
 --- !u!1 &8244261765249423763
 GameObject:
   m_ObjectHideFlags: 0
@@ -1133,6 +1158,11 @@ MonoBehaviour:
   goAspectWindowPrefab: {fileID: 4360261914511281241, guid: 27e9d250f7854c541840f6b8a4705701,
     type: 3}
   imgAspectDisplay: {fileID: 8244261765249423761}
+  goHoverPreviewPrefab: {fileID: 0}
+  eventOnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
+  bAllowDragging: 0
 --- !u!1 &8244261765599698540
 GameObject:
   m_ObjectHideFlags: 0
@@ -1301,6 +1331,11 @@ MonoBehaviour:
   goAspectWindowPrefab: {fileID: 4360261914511281241, guid: 27e9d250f7854c541840f6b8a4705701,
     type: 3}
   imgAspectDisplay: {fileID: 8244261765909313620}
+  goHoverPreviewPrefab: {fileID: 0}
+  eventOnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
+  bAllowDragging: 0
 --- !u!1 &8244261765976055303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1435,6 +1470,11 @@ MonoBehaviour:
   goAspectWindowPrefab: {fileID: 4360261914511281241, guid: 27e9d250f7854c541840f6b8a4705701,
     type: 3}
   imgAspectDisplay: {fileID: 8244261766054737883}
+  goHoverPreviewPrefab: {fileID: 0}
+  eventOnSwitch:
+    m_PersistentCalls:
+      m_Calls: []
+  bAllowDragging: 0
 --- !u!1 &8244261766058456715
 GameObject:
   m_ObjectHideFlags: 0
@@ -1548,6 +1588,11 @@ PrefabInstance:
 
         Always
         naked.'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184660398314951228, guid: 169483749259377429fb949bb527724c,
+        type: 3}
+      propertyPath: m_overflowMode
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7184660398314951229, guid: 169483749259377429fb949bb527724c,
         type: 3}

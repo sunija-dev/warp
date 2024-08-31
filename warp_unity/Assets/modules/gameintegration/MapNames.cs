@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.Networking;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.IO;
+using System;
 
 public class MapNames : MonoBehaviour
 {
@@ -55,11 +57,12 @@ public class MapNames : MonoBehaviour
         GlobalEnums.Language[] arLanguages = (GlobalEnums.Language[])System.Enum.GetValues(typeof(GlobalEnums.Language));
         foreach (GlobalEnums.Language language in arLanguages)
         {
-            StartCoroutine(coGenerateMappingFile(language));
+            StartCoroutine(coGenerateMappingFileBatched("maps", language));
         }
     }
 
-    public IEnumerator coGenerateMappingFile(GlobalEnums.Language _language, int _iStart = 1, int _iEnd = 1500)
+    /*
+    public IEnumerator coGenerateMappingFile(GlobalEnums.Language _language, int _iStart = 1, int _iEnd = 1700)
     {
         Dictionary<int, string> dictMapNames = new Dictionary<int, string>();
 
@@ -86,11 +89,74 @@ public class MapNames : MonoBehaviour
                 }
             }
             yield return new WaitForSeconds(1f);
-        }
+        } 
 
         MapDictWrapper wrapperDict = new MapDictWrapper();
         string strPath = string.Format("{0}/Resources/map_names/maps_{1}.txt", Application.dataPath, _language.ToString());
         System.IO.File.WriteAllText(strPath, wrapperDict.strToJson(dictMapNames));
+        Debug.Log("Updated map list");
+    }
+    */
+
+    private IEnumerator coGenerateMappingFileBatched(string _strApiName, GlobalEnums.Language _language)
+    {
+        // paging: https://wiki.guildwars2.com/wiki/API:2#Accessing_resources
+
+        int iPageTotal = 9999;
+        List<JObject> liEntries = new List<JObject>();
+        for (int i = 0; i < iPageTotal; i++)
+        {
+            Debug.Log($"Requesting {_strApiName} page {i}/{iPageTotal}.");
+            WebRequestAnswer<JObject[]> answerItems = new WebRequestAnswer<JObject[]>();
+            yield return DoWebRequest<JObject[]>($"https://api.guildwars2.com/v2/{_strApiName}?page={i}&page_size=200&lang={_language}", (_output) => answerItems = _output);
+            iPageTotal = int.Parse(answerItems.dictHeaders["x-page-total"]);
+            liEntries.AddRange(answerItems.responseObject);
+        }
+
+        //string strPath = $"{m_strCachePath}/{DateTime.UtcNow.ToString("yyMMdd")}_{_strApiName.Replace('/', '_')}.json";
+        //File.WriteAllText(strPath, JsonConvert.SerializeObject(liEntries));
+
+        Dictionary<int, string> dictMapNames = new Dictionary<int, string>();
+        foreach (JObject jobjEntry in liEntries)
+        {
+            int iId = jobjEntry["id"].Value<int>();
+            dictMapNames[iId] = jobjEntry["name"].Value<string>();
+        }
+
+        MapDictWrapper wrapperDict = new MapDictWrapper();
+        string strPath = string.Format($"{Application.dataPath}/Resources/map_names/maps_{_language}.txt");
+        System.IO.File.WriteAllText(strPath, wrapperDict.strToJson(dictMapNames));
+
+        Debug.Log($"Finished downloading API {_strApiName}.");
+    }
+
+    /// COPIED OVER FROM IconDB.cs TODO: refactor, e.g. to a general "api cacher"
+    private IEnumerator DoWebRequest<T>(string _strRequest, Action<WebRequestAnswer<T>> _actionOutput)
+    {
+        Uri uriRequest = new Uri(_strRequest);
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(uriRequest))
+        {
+            yield return webRequest.SendWebRequest();
+            if (webRequest.isNetworkError)
+            {
+                Debug.Log(": Error: " + webRequest.error);
+            }
+            else if (webRequest.downloadHandler.isDone)
+            {
+                WebRequestAnswer<T> webRequestAnswer = new WebRequestAnswer<T>();
+                var jobjResponse = JsonConvert.DeserializeObject<T>(webRequest.downloadHandler.text);
+                webRequestAnswer.responseObject = jobjResponse;
+                webRequestAnswer.dictHeaders = webRequest.GetResponseHeaders();
+                _actionOutput(webRequestAnswer);
+            }
+        }
+    }
+
+    /// COPIED OVER FROM IconDB.cs TODO: refactor
+    private class WebRequestAnswer<T>
+    {
+        public T responseObject;
+        public Dictionary<string, string> dictHeaders;
     }
 
     /// <summary>
