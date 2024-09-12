@@ -3224,7 +3224,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!224 &59804072
 RectTransform:
@@ -30358,6 +30358,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8244261766272591928, guid: 44a4a87f1099366458fc1a57a15075a2,
+        type: 3}
+      propertyPath: rtransPanel
+      value: 
+      objectReference: {fileID: 894759204}
     - target: {fileID: 8548642717196100944, guid: 44a4a87f1099366458fc1a57a15075a2,
         type: 3}
       propertyPath: m_overflowMode
@@ -77975,7 +77980,7 @@ MonoBehaviour:
   optionPosY: 16
   m_fAllowPercentageOffscreen: 0.7
   m_bStayInWindow: 1
-  rtransPanel: {fileID: 0}
+  rtransPanel: {fileID: 3254853655453767976}
 --- !u!1001 &2278564838328173343
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -86592,6 +86597,11 @@ PrefabInstance:
       propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 1338483315}
+    - target: {fileID: 8244261766272591928, guid: 44a4a87f1099366458fc1a57a15075a2,
+        type: 3}
+      propertyPath: rtransPanel
+      value: 
+      objectReference: {fileID: 3676435330808158118}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 44a4a87f1099366458fc1a57a15075a2, type: 3}
 --- !u!224 &8305941727362121764

@@ -93,14 +93,16 @@ Full build (with patcher, starter, utility):
 - Open warp\_unity (as shown above) and build it
 
 ## Releasing a new version
-- You have to run it on your server
+- (You'll have to run it on your server)
 - Unity: set the version number (in the build settings)
-- Make a build windows
-- Throw the warp\_starter files into it
+- Set the IP/domain of your server in the network_manager object in the "Network Address" field
+- Make a windows build
+- Throw the warp\_starter files in the folder of the build
 - Zip it
-- Upload the zip to the web path hardcoded in the patcher (atm weltenrast.de/warp/recore/WARP.zip
+- Upload the zip to the web path hardcoded in the patcher (atm weltenrast.de/warp/recore/WARP.zip)
 - Make a linux build (needs to have same version number)
-- Zip it, make upload it
+- Zip it, upload it to your linux server, unzip it
+- Run it with the start_server.sh script (you find it in the project files)
 - (TODO: Add remaining steps)
 - (make a test build)
   - don’t add starter
@@ -110,7 +112,7 @@ Full build (with patcher, starter, utility):
 - 2 cores
 - 4 gb ram
 - 120gb harddisk
-- Location: Germany (WARP is not as ping dependant, so it works of the whole world)
+- Location: Germany (WARP is not very ping dependant, so it still works around the world)
 - → Can be rented for less than 5€/month
 
 ## Let’s go through running WARP…

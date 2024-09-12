@@ -148,7 +148,7 @@ public partial class Database : MonoBehaviour
 #if UNITY_EDITOR
         string path = Path.Combine(Directory.GetParent(Application.dataPath).FullName, strDatabaseFileName);
 #else
-        string path = Path.Combine(Application.dataPath, databaseFile);
+        string path = Path.Combine(Application.dataPath, strDatabaseFileName);
 #endif
 
         // Creates database file if necessary
@@ -482,11 +482,11 @@ public partial class Database : MonoBehaviour
 #if UNITY_EDITOR
         string path = Path.Combine(Directory.GetParent(Application.dataPath).FullName, strDatabaseFileName);
 #elif UNITY_ANDROID
-        string path = Path.Combine(Application.persistentDataPath, databaseFile);
+        string path = Path.Combine(Application.persistentDataPath, strDatabaseFileName);
 #elif UNITY_IOS
-        string path = Path.Combine(Application.persistentDataPath, databaseFile);
+        string path = Path.Combine(Application.persistentDataPath, strDatabaseFileName);
 #else
-        string path = Path.Combine(Application.dataPath, databaseFile);
+        string path = Path.Combine(Application.dataPath, strDatabaseFileName);
 #endif
 
         return path;

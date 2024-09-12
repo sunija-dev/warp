@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
+using static WikiMap;
 
 // https://wiki.guildwars2.com/api.php?action=parse&page=Kryta&format=json
 // https://api.guildwars2.com/v2/continents/1/floors/0
@@ -21,15 +22,16 @@ public class WikiMap : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(coParseAPI());
+        StartCoroutine(coFetchAllPages());
+        //StartCoroutine(coParseAPI());
     }
 
     private IEnumerator coParseAPI()
     {
         // debug
-        Region regionTest = new Region();
-        regionTest.strName = "Catha";
-        yield return StartCoroutine(coFindWikiEntry(regionTest));
+        //Region regionTest = new Region();
+        //regionTest.strName = "Catha";
+        //yield return StartCoroutine(coFindWikiEntry(regionTest));
 
         // we'll only look at continent 1 (Tyria, not Mists)
         // get all floors from https://api.guildwars2.com/v2/continents/1
@@ -258,11 +260,83 @@ public class WikiMap : MonoBehaviour
         }
     }
 
+    private IEnumerator coFetchAllPages()
+    {
+        List<WikiEntry> allPages = new List<WikiEntry>();
+        string continueToken = null;
+
+        do
+        {
+            // Build the URL with parameters
+            string url = $"https://wiki.guildwars2.com/api.php?action=query&list=allpages&apfilterredir=nonredirects&aplimit=max&format=json";
+            if (!string.IsNullOrEmpty(continueToken))
+            {
+                url += $"&apcontinue={UnityWebRequest.EscapeURL(continueToken)}";
+            }
+
+            // Send the request
+            using (UnityWebRequest request = UnityWebRequest.Get(url))
+            {
+                yield return request.SendWebRequest();
+
+                // Check for errors
+                if (request.isNetworkError || request.isHttpError)
+                {
+                    Debug.LogError($"Error fetching pages: {request.error}");
+                    yield break;
+                }
+
+                // Parse the JSON response
+                JObject data = JObject.Parse(request.downloadHandler.text);
+
+                // Extract pages
+                var pages = data["query"]["allpages"];
+                foreach (var page in pages)
+                {
+                    WikiEntry wikiEntry = new WikiEntry();
+                    wikiEntry.strTitle = page["title"].ToString();
+                    wikiEntry.iId = int.Parse(page["pageid"].ToString());
+                    allPages.Add(wikiEntry);
+                    //Debug.Log(wikiEntry.strTitle); // Print each page title to the console
+                }
+
+                // Check for continue token for pagination
+                continueToken = data["continue"]?["apcontinue"]?.ToString();
+            }
+
+            Debug.Log($"Fetched {allPages.Count} pages");
+
+        } while (!string.IsNullOrEmpty(continueToken));
+
+        WikiContainer wikiContainer = new WikiContainer();
+        wikiContainer.liEntries = allPages;
+        File.WriteAllText($"{Application.dataPath}/{IconDB.c_strApiDownloadFolder}/Resources/wiki_pages.json",
+            JsonConvert.SerializeObject(wikiContainer, Formatting.Indented, new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            }));
+
+        Debug.Log($"Total pages fetched: {allPages.Count}");
+    }
+
 
     private class WebRequestAnswer<T>
     {
         public T responseObject;
         public Dictionary<string, string> dictHeaders;
+    }
+
+    public class WikiContainer
+    {
+        public List<WikiEntry> liEntries = new List<WikiEntry>();
+    }
+
+    public class WikiEntry
+    {
+        public string strTitle;
+        public int iId;
+        public float fPositionX = 0;
+        public float fPositionY = 0;
     }
 
 

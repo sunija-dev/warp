@@ -38,6 +38,18 @@ public class DragHandler : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndD
             rtransPanel.localPosition = SuUtility.v2ClampToWindow(rtransPanel, m_fAllowPercentageOffscreen);
     }
 
+    // HACKFIX: position often doesn't get loaded correctly, because the window size during loading is tiny
+    // and afterwards the object might be disabled (thus we cannot wait in a coroutine)
+    // position gets saved with every movement anyways, so we can just always load it on enable
+    private void OnEnable()
+    {
+        if (bRememberPosition)
+        {
+            if (Settings.Instance != null && Settings.Instance.bLoaded)
+                LoadPositionFromSettings();
+        }
+    }
+
     private void LoadPositionFromSettings()
     {
         rtransPanel.localPosition = new Vector2(Settings.fRead(optionPosX), Settings.fRead(optionPosY));

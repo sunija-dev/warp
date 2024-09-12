@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: GoogleSheetsService
   m_EditorClassIdentifier: 
   m_ApiKey: AIzaSyBOA1ptA_p54V-IMHHSEmXkYJOnh-78eVM
-  m_ClientId: 78081078844-e5kpln20rsuh7ci05oomkb2li2j96e7a.apps.googleusercontent.com
-  m_ClientSecret: 7IWnfri-86123G5nQa_D7hkD
+  m_ClientId: 
+  m_ClientSecret: 
   m_AuthenticationType: 1
   m_ApplicationName: warp
   m_NewSheetProperties:

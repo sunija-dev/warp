@@ -3,16 +3,16 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.IO;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
 /// <summary>
-/// Mostly for creating the icon db.
-/// First run with "Update Api Cache" enabled, then "Parse API", then "Download Icons", then "Parse API" again.
-/// You might need to delete the entries of "icondb_generated" in the resources folder to make it work.
-/// And yes, sadly this whole progress is kinda messy. :/
+/// Find out which icons there are, download them and sort them with tags.
+/// First run with "Update Api Cache" enabled, then "Parse API", then "Download Icons", then copy the icons from warp/icons_download to Assets/Resources/icons, then "Parse API" again.
+/// If you added icons, don't forget to recreate the icon list in editor with WARP->Rebuild icon list!! TODO: This could be automated.
 /// </summary>
 public class IconDB : MonoBehaviour
 {
@@ -22,12 +22,14 @@ public class IconDB : MonoBehaviour
 
     public bool m_bUpdateApiCache = false;
     public bool m_bParseApi = false;
+    [Tooltip("Downloads all icons from the API to warp/icons_download. You have to copy them manually to Assets/Resources/icons.")]
     public bool m_bDownloadIcons = false;
     [Space]
     public int m_iMaxDownloadsAtATime = 100; //default 100
     public bool m_bRedownloadAllIcons = false;
 
     private string m_strCachePath = "[set in start]";
+    private string m_strIconDbPath = "[set in start]";
 
     public const string c_strApiDownloadFolder = "api_downloads";
 
@@ -39,7 +41,7 @@ public class IconDB : MonoBehaviour
         public List<int> liTags = new List<int>();
     }
 
-    public class OutputFile
+    public class IconDBOutput
     {
         public Dictionary<int, IconEntry> dictIcons;
         public List<string> liTags;
@@ -48,25 +50,20 @@ public class IconDB : MonoBehaviour
     IEnumerator Start()
     {
         m_strCachePath = $"{Application.dataPath}/{c_strApiDownloadFolder}/";
+        m_strIconDbPath = $"{m_strCachePath}/Resources/icondb_generated.json";
 
+        // load icon db
         TextAsset textAssetDB = Resources.Load<TextAsset>("icondb_generated");
-        OutputFile outputFile = JsonConvert.DeserializeObject<OutputFile>(textAssetDB.text);
+        IconDBOutput outputFile = JsonConvert.DeserializeObject<IconDBOutput>(textAssetDB.text);
         s_dictIcons = outputFile.dictIcons;
+
+        // load tags
         liTags = outputFile.liTags;
         if (!liTags.Contains("untagged"))
             liTags.Add("untagged");
-
-
         for (int i = 0; i < liTags.Count; i++)
         {
             s_liTags.Add(new Tuple<int, string>(i, liTags[i]));
-        }
-
-        // add "untagged" tag to all icons without tag
-        foreach (KeyValuePair<int, IconEntry> kvpIconEntry in s_dictIcons)
-        {
-            if (kvpIconEntry.Value.liTags.Count == 0)
-                kvpIconEntry.Value.liTags.Add(liTags.Count - 1); // last tag is "untagged")
         }
 
         yield return StartCoroutine(coCreateDB());
@@ -89,15 +86,54 @@ public class IconDB : MonoBehaviour
         {
             yield return StartCoroutine(ParseApi());
             RegisterMissingIconsFromFolder();
+            FindMissingIcons();
+            AddUntaggedTag();
 
             Debug.Log("Writing output...");
-            string strPath = $"{m_strCachePath}/Resources/icondb_generated.json";
-            File.WriteAllText(strPath, JsonConvert.SerializeObject(new OutputFile() { dictIcons = s_dictIcons, liTags = liTags }, Formatting.Indented));
-            Debug.Log("Finished writing output.");
+            File.WriteAllText(m_strIconDbPath, JsonConvert.SerializeObject(new IconDBOutput() { dictIcons = s_dictIcons, liTags = liTags }, Formatting.Indented));
+            Debug.Log("Finished creating IconDB");
         }
 
         if (m_bDownloadIcons)
             StartCoroutine(coDownloadAllIcons());
+    }
+
+    // add "untagged" tag to all icons without tag
+    private void AddUntaggedTag()
+    { 
+        int iUntagged = liTags.IndexOf("untagged");
+        foreach (KeyValuePair<int, IconEntry> kvpIconEntry in s_dictIcons)
+        {
+            if (kvpIconEntry.Value.liTags.Count == 0)
+                kvpIconEntry.Value.liTags.Add(iUntagged);
+        }
+    }
+
+    /// <summary>
+    /// Finds correct icon ids.
+    /// The API sometimes links to 32x32 icons, but we want the 64x64 ones. In that case, the 64x64 icon has a id one higher than the 32x32 one.
+    /// </summary>
+    private void FindMissingIcons()
+    { 
+        // find which icons are missing
+        List<int> liMissingIcons = new List<int>();
+        foreach (KeyValuePair<int, IconEntry> kvpIcon in s_dictIcons)
+        {
+            if (!File.Exists($"{Application.dataPath}/Resources/icons/{kvpIcon.Key}.png"))
+                liMissingIcons.Add(kvpIcon.Key);
+        }
+
+        Debug.Log($"Found {liMissingIcons.Count} missing icons.");
+
+        // find correct icon ids
+        foreach (int iIconId in liMissingIcons)
+        {
+            if (s_dictIcons.ContainsKey(iIconId + 1))
+                s_dictIcons[iIconId + 1] = s_dictIcons[iIconId];
+            else
+                Debug.Log($"Icon {iIconId} is missing and there is no 64x64 version of it.");
+            s_dictIcons.Remove(iIconId);
+        }
     }
 
     // Adds icons that are in the icon folder but were not added during the api crawl
@@ -147,10 +183,16 @@ public class IconDB : MonoBehaviour
         Debug.Log("Finished downloading icons.");
     }
 
+    /// <summary>
+    /// Creates list of tags and icons from the API data.
+    /// </summary>
     public IEnumerator ParseApi()
     {
         Debug.Log("Parsing Api.");
-        
+
+        s_dictIcons.Clear();
+        s_liTags.Clear();
+
         yield return StartCoroutine(ParseItems());
         yield return StartCoroutine(ParseSimple("finishers", "finisher"));
         yield return StartCoroutine(ParseMasteries());
