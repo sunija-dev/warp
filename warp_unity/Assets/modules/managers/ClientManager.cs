@@ -42,7 +42,6 @@ public class ClientManager : MonoBehaviour
     public Canvas canvasPopupIcons;
     public TMP_InputField inputAdminCommands;
     public GameObject goTooltipPrefab;
-    public StatisticsGlobal statisticsGlobal;
     public WindowCharInfo windowCharInfo;
     public WindowCharInfo windowMyCharInfo;
 
@@ -123,6 +122,13 @@ public class ClientManager : MonoBehaviour
         mainWindow.OpenPage(pageLoading);
         mainWindow.Close();
 
+        /*
+        while (!(Player.Instance != null && bAccLoggedIn && bCharLoggedIn))
+        {
+            Debug.Log($"Waiting for player, account and character to be logged in. Player: {Player.Instance != null}, Account: {bAccLoggedIn}, Character: {bCharLoggedIn}");
+            yield return null;
+        }
+        */
         yield return new WaitUntil(() => Player.Instance != null && bAccLoggedIn && bCharLoggedIn);
 
         mainWindow.SetVisiblityForAllPageSelectors(true);

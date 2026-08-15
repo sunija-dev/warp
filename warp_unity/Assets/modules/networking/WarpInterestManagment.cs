@@ -33,7 +33,7 @@ namespace Mirror
         public bool showSlider;
 
         // the grid
-        Grid2D<NetworkConnection> grid = new Grid2D<NetworkConnection>();
+        Grid2D<NetworkConnection> grid = new Grid2D<NetworkConnection>(100);
 
         // project 3d world position to grid position
         Vector2Int ProjectToGrid(Vector3 position) =>

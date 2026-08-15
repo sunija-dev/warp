@@ -23,6 +23,8 @@ public class GameIntegration : MonoBehaviour
 {
     //private static readonly Logger Logger = Logger.GetLogger<GameIntegrationService>();
 
+    public bool m_bLogIfWarpChangesVisibility = false;
+
     public TMP_Text m_textFocusWarp;
     public TMP_Text m_textFocusGW2;
     public TMP_Text m_textFocusGW2Window;
@@ -195,7 +197,7 @@ public class GameIntegration : MonoBehaviour
         s_hwndWarpFormHandle = hwndGetWarpWindow();
         TryAttachToGw2();
 
-        StartCoroutine(coLogDebugInfo());
+        //StartCoroutine(coLogDebugInfo());
     }
 
     private IEnumerator coLogDebugInfo() 
@@ -274,15 +276,12 @@ public class GameIntegration : MonoBehaviour
         if (bWarpisVisible != s_bWarpIsVisible)
         {
             if (bWarpisVisible)
-            {
-                UnityEngine.Debug.Log($"Make WARP visible. (gw2 has focus: {m_bGw2HasFocus}, warp has focus last: {m_bWarpHasFocusLast})");
                 eWarpBecomesVisible.Invoke(this, null);
-            }
             else
-            {
-                UnityEngine.Debug.Log($"Make WARP invisible. (gw2 has focus: {m_bGw2HasFocus}, warp has focus last: {m_bWarpHasFocusLast})");
                 eWarpBecomesHidden.Invoke(this, null);
-            }
+
+            if (m_bLogIfWarpChangesVisibility)
+                UnityEngine.Debug.Log($"Make WARP {(bWarpisVisible ? "visible" : "invisible")}. (gw2 has focus: {m_bGw2HasFocus}, warp has focus last: {m_bWarpHasFocusLast})");
         }
         s_bWarpIsVisible = bWarpisVisible;
 

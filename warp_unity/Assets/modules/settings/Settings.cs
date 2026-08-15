@@ -118,6 +118,7 @@ public class Settings
     public void Load()
     {
         Debug.Log("Settings: Loading settings.");
+        Debug.Log(m_strPath);
 
         if (!File.Exists(m_strPath))
         {

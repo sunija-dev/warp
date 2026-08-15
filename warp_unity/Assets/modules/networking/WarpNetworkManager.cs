@@ -28,6 +28,7 @@ public class WarpNetworkManager : NetworkManager
     public override void OnStartServer()
     {
         base.OnStartServer();
+        Debug.Log("Started server");
         NetworkServer.RegisterHandler<CreatePlayerMessage>(OnCreatePlayer);
     }
 
@@ -44,7 +45,7 @@ public class WarpNetworkManager : NetworkManager
     public override void OnClientConnect()
     {
         base.OnClientConnect();
-        //conn.Send(new CreatePlayerMessage { });
+        NetworkClient.connection.Send(new CreatePlayerMessage());
         print("CLIENT: CreatePlayer message was sent");
     }
 
