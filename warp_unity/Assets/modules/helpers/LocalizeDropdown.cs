@@ -110,7 +110,7 @@ public class LocalizeDropdown : MonoBehaviour
             }
 
             // Finally add the option with the localized content
-            liDropdownOptions.Add(new TMP_Dropdown.OptionData(localizedText, localizedSprite));
+            liDropdownOptions.Add(new TMP_Dropdown.OptionData(localizedText, localizedSprite, default));
         }
 
         // Clear any options that might be present

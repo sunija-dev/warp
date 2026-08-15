@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Mirror.Examples.Additive
+namespace Mirror.Examples.AdditiveScenes
 {
     // This script demonstrates the NetworkAnimator and how to leverage
     // the built-in observers system to track players.
@@ -36,7 +36,7 @@ namespace Mirror.Examples.Additive
             GameObject target = null;
             float distance = 100f;
 
-            foreach (NetworkConnection networkConnection in netIdentity.observers.Values)
+            foreach (NetworkConnectionToClient networkConnection in netIdentity.observers.Values)
             {
                 GameObject tempTarget = networkConnection.identity.gameObject;
                 float tempDistance = Vector3.Distance(tempTarget.transform.position, transform.position);
@@ -50,9 +50,9 @@ namespace Mirror.Examples.Additive
 
             if (target != null)
             {
-                transform.LookAt(target.transform.position + Vector3.down);
+                transform.LookAt(new Vector3(target.transform.position.x, 0, target.transform.position.z));
                 rotation = transform.rotation;
-                networkAnimator.SetTrigger("Fire");
+                //networkAnimator.SetTrigger("Shoot");
             }
         }
     }

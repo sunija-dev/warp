@@ -211,9 +211,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sceneId: 0
+  _assetId: 1148011193
   serverOnly: 0
-  visible: 0
-  m_AssetId: e101d385946c91b4c81f318efc723a88
+  visibility: 0
   hasSpawned: 0
 --- !u!114 &4082668978785527835
 MonoBehaviour:
@@ -227,8 +227,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d17e718851449a6879986e45c458fb7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
+  MatchID: 
 --- !u!114 &6069480080749678769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ccb1dd1fc7cc624e9bff1d0d7a5c741, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncDirection: 0
   syncMode: 0
   syncInterval: 0.1
   canvasGroup: {fileID: 4694292283357099176}
@@ -644,7 +647,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
   m_AnchoredPosition: {x: 0, y: -100}
-  m_SizeDelta: {x: 600, y: 134}
+  m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3131614140979920454
 CanvasRenderer:

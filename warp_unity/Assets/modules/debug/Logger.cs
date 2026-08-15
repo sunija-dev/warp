@@ -32,6 +32,10 @@ public class Logger : MonoBehaviour
 
     public void Log(string _strLog, string _strStackTrace, LogType _logType)
     {
+        // timer to check how long the method takes
+        System.Diagnostics.Stopwatch sw = new System.Diagnostics.Stopwatch();
+        sw.Start();
+
         try
         {
             string strLog = string.Format("[{0}] {1}\n", DateTime.UtcNow.ToString("HH:mm:ss"), _strLog);
@@ -41,5 +45,8 @@ public class Logger : MonoBehaviour
         }
         catch 
         { }
+
+        sw.Stop();
+        //Debug.Log($"Writing log took {sw.ElapsedMilliseconds}ms");
     }
 }

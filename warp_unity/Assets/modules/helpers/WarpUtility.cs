@@ -18,7 +18,8 @@ public class WarpUtility : MonoBehaviour
     public void Awake()
     {
         instance = this;
-        Application.logMessageReceived += OutputDebugLog;
+        // TODO: DIsabled due to performance issues. And maybe not really used atm.
+        //Application.logMessageReceived += OutputDebugLog;
     }
 
     public void OutputDebugLog(string _strLogString, string _strStackTrace, LogType type)
@@ -31,6 +32,6 @@ public class WarpUtility : MonoBehaviour
         string strOutput = "";
         liLines.ForEach(line => strOutput += line + "\n");
 
-        m_textDebugOutput.text = strOutput +  _strLogString;
+        m_textDebugOutput.text = strOutput + _strLogString;
     }
 }

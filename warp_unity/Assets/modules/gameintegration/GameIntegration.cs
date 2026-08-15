@@ -17,6 +17,7 @@ using System.Linq;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections;
 
 public class GameIntegration : MonoBehaviour
 {
@@ -193,6 +194,35 @@ public class GameIntegration : MonoBehaviour
         strGw2ExecutablePath = GetGw2PathFromRegistry();
         s_hwndWarpFormHandle = hwndGetWarpWindow();
         TryAttachToGw2();
+
+        StartCoroutine(coLogDebugInfo());
+    }
+
+    private IEnumerator coLogDebugInfo() 
+    {
+        while (true)
+        {
+            string strLog = "Debug info:\n";
+            strLog += $"s_bWarpHasFocus: {s_bWarpHasFocus}\n";
+            strLog += $"m_bWarpHasFocusLast: {m_bWarpHasFocusLast}\n";
+            strLog += $"m_bGw2HasFocus: {m_bGw2HasFocus}\n";
+            strLog += $"m_bGw2WasOpenOnce: {m_bGw2WasOpenOnce}\n";
+            strLog += $"m_fGw2ClosedSince: {m_fGw2ClosedSince}\n";
+            strLog += $"m_fLastGw2Check: {m_fLastGw2Check}\n";
+            strLog += $"m_processGw2: {m_processGw2}\n";
+            strLog += $"m_bGw2IsRunning: {m_bGw2IsRunning}\n";
+            strLog += $"Foreground window: {WindowUtil.GetForegroundWindow()}\n";
+            strLog += $"s_hwndGw2WindowHandle: {s_hwndGw2WindowHandle}\n";
+            strLog += $"s_hwndWarpFormHandle: {s_hwndWarpFormHandle}\n";
+            strLog += $"s_bWarpIsVisible: {s_bWarpIsVisible}\n";
+            strLog += $"s_rectGW2: {s_rectGW2}\n";
+            strLog += $"iScreenHeightLast: {MumbleManager.Instance.bGameHasFocus}\n";
+
+            strLog += "\n\n";
+            UnityEngine.Debug.Log(strLog);
+
+            yield return new WaitForSecondsRealtime(1f);
+        }
     }
 
     public void Update()
@@ -229,6 +259,7 @@ public class GameIntegration : MonoBehaviour
 
             if (m_fLastGw2Check > GW2_EXE_CHECKRATE)
             {
+                UnityEngine.Debug.Log("Checking for GW2.");
                 TryAttachToGw2();
                 //UnityEngine.Debug.Log("Try attaching");
                 m_fLastGw2Check = 0f;
@@ -241,11 +272,17 @@ public class GameIntegration : MonoBehaviour
 
 
         if (bWarpisVisible != s_bWarpIsVisible)
-        { 
+        {
             if (bWarpisVisible)
+            {
+                UnityEngine.Debug.Log($"Make WARP visible. (gw2 has focus: {m_bGw2HasFocus}, warp has focus last: {m_bWarpHasFocusLast})");
                 eWarpBecomesVisible.Invoke(this, null);
+            }
             else
+            {
+                UnityEngine.Debug.Log($"Make WARP invisible. (gw2 has focus: {m_bGw2HasFocus}, warp has focus last: {m_bWarpHasFocusLast})");
                 eWarpBecomesHidden.Invoke(this, null);
+            }
         }
         s_bWarpIsVisible = bWarpisVisible;
 
@@ -330,6 +367,7 @@ public class GameIntegration : MonoBehaviour
     {
         // Get process from Mumble if it is defined
         // otherwise just get the first instance running
+        UnityEngine.Debug.Log("Trying to attach to gw2.");
         this.m_processGw2 = GetDefaultGw2ProcessByName();
 
         if (this.m_bGw2IsRunning)

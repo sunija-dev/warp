@@ -41,15 +41,15 @@ public class WarpNetworkManager : NetworkManager
     public struct CreatePlayerMessage : NetworkMessage {}
 
     // CLIENT
-    public override void OnClientConnect(NetworkConnection conn)
+    public override void OnClientConnect()
     {
-        base.OnClientConnect(conn);
-        conn.Send(new CreatePlayerMessage { });
+        base.OnClientConnect();
+        //conn.Send(new CreatePlayerMessage { });
         print("CLIENT: CreatePlayer message was sent");
     }
 
     // SERVER
-    void OnCreatePlayer(NetworkConnection connection, CreatePlayerMessage createPlayerMessage)
+    void OnCreatePlayer(NetworkConnectionToClient connection, CreatePlayerMessage createPlayerMessage)
     {
         Debug.Log("SERVER: Create player.");
         GameObject goPlayer = Instantiate(playerPrefab);
@@ -57,10 +57,10 @@ public class WarpNetworkManager : NetworkManager
     }
 
     // CLIENT
-    public override void OnClientDisconnect(NetworkConnection conn)
+    public override void OnClientDisconnect()
     {
         print("OnClientDisconnect");
-        base.OnClientDisconnect(conn);
+        base.OnClientDisconnect();
         ClientManager.Instance.bAccLoggedIn = false;
         ClientManager.Instance.bCharLoggedIn = false;
         ClientManager.Instance.ShowLoadingPage();
@@ -90,22 +90,22 @@ public class WarpNetworkManager : NetworkManager
             iReconnectAttempts = 0;
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn)
+    public override void OnServerAddPlayer(NetworkConnectionToClient conn)
     {
         ePlayerConnected?.Invoke(this, conn);
         base.OnServerAddPlayer(conn);
     }
 
     // SERVER
-    public override void OnServerDisconnect(NetworkConnection conn)
+    public override void OnServerDisconnect(NetworkConnectionToClient conn)
     {
         ePlayerDisconnected?.Invoke(this, conn);
         base.OnServerDisconnect(conn);
     }
 
-    public override void OnServerError(NetworkConnection conn, Exception exception)
+    public override void OnServerError(NetworkConnectionToClient conn, TransportError error, string reason)
     {
-        base.OnServerError(conn, exception);
+        base.OnServerError(conn, error, reason);
 
         string strAccountName = "";
         if (ServerManager.s_dictPlayers.ContainsKey(conn))
@@ -118,6 +118,6 @@ public class WarpNetworkManager : NetworkManager
             strAccountName = conn.connectionId.ToString();
         }
 
-        Debug.Log($"{strAccountName} - {exception.Source}: {exception.Message}\n{exception.StackTrace}");
+        Debug.Log($"{strAccountName} - {error}: {reason}");
     }
 }

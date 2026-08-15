@@ -6,6 +6,8 @@ using System;
 using System.Linq;
 using System.Text;
 
+// Just keeping this here for documentation.
+/*
 public class Minimizer : MonoBehaviour
 {
     private float fSwitchDelay = 0.15f;
@@ -74,8 +76,8 @@ public class Minimizer : MonoBehaviour
 
     private void HideRPWindow(string _strName)
     {
-        if (!Application.isEditor)
-            Application.targetFrameRate = 1;
+        //if (!Application.isEditor) // most likely this is an unused script. Just wanted to disable this anyway in case it is used, becasue that could break something
+        //    Application.targetFrameRate = 1;
         IntPtr h = SuUtility.FindWindow(_strName);
         if (h == IntPtr.Zero)
             return;
@@ -96,3 +98,4 @@ public class Minimizer : MonoBehaviour
     private static extern bool EnableWindow(IntPtr hwnd, bool enabled);
 
 }
+*/

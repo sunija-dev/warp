@@ -7,7 +7,7 @@ namespace Mirror
     /// <para>The RoomPrefab object of the NetworkRoomManager must have this component on it. This component holds basic room player data required for the room to function. Game specific data for room players can be put in other components on the RoomPrefab or in scripts derived from NetworkRoomPlayer.</para>
     /// </summary>
     [DisallowMultipleComponent]
-    [AddComponentMenu("Network/NetworkRoomPlayer")]
+    [AddComponentMenu("Network/Network Room Player")]
     [HelpURL("https://mirror-networking.gitbook.io/docs/components/network-room-player")]
     public class NetworkRoomPlayer : NetworkBehaviour
     {
@@ -25,14 +25,14 @@ namespace Mirror
         /// <para>Invoke CmdChangeReadyState method on the client to set this flag.</para>
         /// <para>When all players are ready to begin, the game will start. This should not be set directly, CmdChangeReadyState should be called on the client to set it on the server.</para>
         /// </summary>
-        [Tooltip("Diagnostic flag indicating whether this player is ready for the game to begin")]
+        [ReadOnly, Tooltip("Diagnostic flag indicating whether this player is ready for the game to begin")]
         [SyncVar(hook = nameof(ReadyStateChanged))]
         public bool readyToBegin;
 
         /// <summary>
         /// Diagnostic index of the player, e.g. Player1, Player2, etc.
         /// </summary>
-        [Tooltip("Diagnostic index of the player, e.g. Player1, Player2, etc.")]
+        [ReadOnly, Tooltip("Diagnostic index of the player, e.g. Player1, Player2, etc.")]
         [SyncVar(hook = nameof(IndexChanged))]
         public int index;
 
@@ -41,7 +41,7 @@ namespace Mirror
         /// <summary>
         /// Do not use Start - Override OnStartHost / OnStartClient instead!
         /// </summary>
-        public void Start()
+        public virtual void Start()
         {
             if (NetworkManager.singleton is NetworkRoomManager room)
             {
@@ -139,7 +139,7 @@ namespace Mirror
                 if (!room.showRoomGUI)
                     return;
 
-                if (!NetworkManager.IsSceneActive(room.RoomScene))
+                if (!Utils.IsSceneActive(room.RoomScene))
                     return;
 
                 DrawPlayerReadyState();

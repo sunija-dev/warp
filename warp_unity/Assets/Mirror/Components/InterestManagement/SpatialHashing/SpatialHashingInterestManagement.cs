@@ -1,18 +1,30 @@
 // extremely fast spatial hashing interest management based on uMMORPG GridChecker.
 // => 30x faster in initial tests
 // => scales way higher
+// checks on two dimensions only(!), for example: XZ for 3D games or XY for 2D games.
+// this is faster than XYZ checking but doesn't check vertical distance.
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mirror
 {
+    [AddComponentMenu("Network/ Interest Management/ Spatial Hash/Spatial Hashing Interest Management")]
     public class SpatialHashingInterestManagement : InterestManagement
     {
         [Tooltip("The maximum range that objects will be visible at.")]
         public int visRange = 30;
 
-        // if we see 8 neighbors then 1 entry is visRange/3
-        public int resolution => visRange / 3;
+        // we use a 9 neighbour grid.
+        // so we always see in a distance of 2 grids.
+        // for example, our own grid and then one on top / below / left / right.
+        //
+        // this means that grid resolution needs to be distance / 2.
+        // so for example, for distance = 30 we see 2 cells = 15 * 2 distance.
+        //
+        // on first sight, it seems we need distance / 3 (we see left/us/right).
+        // but that's not the case.
+        // resolution would be 10, and we only see 1 cell far, so 10+10=20.
+        public int resolution => visRange / 2;
 
         [Tooltip("Rebuild all every 'rebuildInterval' seconds.")]
         public float rebuildInterval = 1;
@@ -26,11 +38,12 @@ namespace Mirror
         [Tooltip("Spatial Hashing supports 3D (XZ) and 2D (XY) games.")]
         public CheckMethod checkMethod = CheckMethod.XZ_FOR_3D;
 
-        // debugging
+        [Header("Debug Settings")]
         public bool showSlider;
 
         // the grid
-        Grid2D<NetworkConnection> grid = new Grid2D<NetworkConnection>();
+        // begin with a large capacity to avoid resizing & allocations.
+        Grid2D<NetworkConnectionToClient> grid = new Grid2D<NetworkConnectionToClient>(1024);
 
         // project 3d world position to grid position
         Vector2Int ProjectToGrid(Vector3 position) =>
@@ -38,7 +51,7 @@ namespace Mirror
             ? Vector2Int.RoundToInt(new Vector2(position.x, position.z) / resolution)
             : Vector2Int.RoundToInt(new Vector2(position.x, position.y) / resolution);
 
-        public override bool OnCheckObserver(NetworkIdentity identity, NetworkConnection newObserver)
+        public override bool OnCheckObserver(NetworkIdentity identity, NetworkConnectionToClient newObserver)
         {
             // calculate projected positions
             Vector2Int projected = ProjectToGrid(identity.transform.position);
@@ -51,7 +64,7 @@ namespace Mirror
             return (projected - observerProjected).sqrMagnitude <= 2;
         }
 
-        public override void OnRebuildObservers(NetworkIdentity identity, HashSet<NetworkConnection> newObservers, bool initialize)
+        public override void OnRebuildObservers(NetworkIdentity identity, HashSet<NetworkConnectionToClient> newObservers)
         {
             // add everyone in 9 neighbour grid
             // -> pass observers to GetWithNeighbours directly to avoid allocations
@@ -60,13 +73,17 @@ namespace Mirror
             grid.GetWithNeighbours(current, newObservers);
         }
 
+        [ServerCallback]
+        public override void ResetState()
+        {
+            lastRebuildTime = 0D;
+        }
+
         // update everyone's position in the grid
         // (internal so we can update from tests)
+        [ServerCallback]
         internal void Update()
         {
-            // only on server
-            if (!NetworkServer.active) return;
-
             // NOTE: unlike Scene/MatchInterestManagement, this rebuilds ALL
             //       entities every INTERVAL. consider the other approach later.
 

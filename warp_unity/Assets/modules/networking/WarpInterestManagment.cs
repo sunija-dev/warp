@@ -41,7 +41,7 @@ namespace Mirror
             ? Vector2Int.RoundToInt(new Vector2(position.x, position.z) / resolution)
             : Vector2Int.RoundToInt(new Vector2(position.x, position.y) / resolution);
 
-        public override bool OnCheckObserver(NetworkIdentity identity, NetworkConnection newObserver)
+        public override bool OnCheckObserver(NetworkIdentity identity, NetworkConnectionToClient newObserver)
         {
             WarpNetworkPosition networkPosObject = identity.gameObject.GetComponent<WarpNetworkPosition>();
 
@@ -54,13 +54,13 @@ namespace Mirror
             return bCanSeeEachOther(networkPosPlayer, networkPosObject, newObserver.identity.transform.position, identity.transform.position);
         }
 
-        public override void OnRebuildObservers(NetworkIdentity _identity, HashSet<NetworkConnection> o_netConnObservers, bool initialize)
+        public override void OnRebuildObservers(NetworkIdentity identity, HashSet<NetworkConnectionToClient> newObservers)
         {
-            WarpNetworkPosition networkPosObject = _identity.gameObject.GetComponent<WarpNetworkPosition>();
+            WarpNetworkPosition networkPosObject = identity.gameObject.GetComponent<WarpNetworkPosition>();
 
             if (networkPosObject == null)
             {
-                Debug.Log("No WarpNetworkPosition " + _identity.name);
+                Debug.Log("No WarpNetworkPosition " + identity.name);
                 return;
             }
 
@@ -70,8 +70,8 @@ namespace Mirror
                     continue;
 
                 WarpNetworkPosition networkPosPlayer = player.warpNetworkPosition;
-                if (bCanSeeEachOther(networkPosPlayer, networkPosObject, connClient.identity.transform.position, _identity.transform.position))
-                    o_netConnObservers.Add(connClient);
+                if (bCanSeeEachOther(networkPosPlayer, networkPosObject, connClient.identity.transform.position, identity.transform.position))
+                    newObservers.Add(connClient);
             }
             
 

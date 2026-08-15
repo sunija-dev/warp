@@ -12,12 +12,13 @@ public class OutputDebugLog : MonoBehaviour
 
     void Start()
     {
-        Application.logMessageReceived += OutputDebugLogFunction;
+        // TODO: Disabled in case it has influence on performance
+        //Application.logMessageReceived += OutputDebugLogFunction;
     }
 
     private void OnApplicationQuit()
     {
-        Application.logMessageReceived -= OutputDebugLogFunction;
+        //Application.logMessageReceived -= OutputDebugLogFunction;
     }
 
     public void OutputDebugLogFunction(string _strLogString, string _strStackTrace, LogType type)

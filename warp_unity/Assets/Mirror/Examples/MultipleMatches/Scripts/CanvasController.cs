@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -11,12 +12,12 @@ namespace Mirror.Examples.MultipleMatch
         /// <summary>
         /// Match Controllers listen for this to terminate their match and clean up
         /// </summary>
-        public event Action<NetworkConnection> OnPlayerDisconnected;
+        public event Action<NetworkConnectionToClient> OnPlayerDisconnect;
 
         /// <summary>
         /// Cross-reference of client that created the corresponding match in openMatches below
         /// </summary>
-        internal static readonly Dictionary<NetworkConnection, Guid> playerMatches = new Dictionary<NetworkConnection, Guid>();
+        internal static readonly Dictionary<NetworkConnectionToClient, Guid> playerMatches = new Dictionary<NetworkConnectionToClient, Guid>();
 
         /// <summary>
         /// Open matches that are available for joining
@@ -26,17 +27,17 @@ namespace Mirror.Examples.MultipleMatch
         /// <summary>
         /// Network Connections of all players in a match
         /// </summary>
-        internal static readonly Dictionary<Guid, HashSet<NetworkConnection>> matchConnections = new Dictionary<Guid, HashSet<NetworkConnection>>();
+        internal static readonly Dictionary<Guid, HashSet<NetworkConnectionToClient>> matchConnections = new Dictionary<Guid, HashSet<NetworkConnectionToClient>>();
 
         /// <summary>
         /// Player informations by Network Connection
         /// </summary>
-        internal static readonly Dictionary<NetworkConnection, PlayerInfo> playerInfos = new Dictionary<NetworkConnection, PlayerInfo>();
+        internal static readonly Dictionary<NetworkConnectionToClient, PlayerInfo> playerInfos = new Dictionary<NetworkConnectionToClient, PlayerInfo>();
 
         /// <summary>
         /// Network Connections that have neither started nor joined a match yet
         /// </summary>
-        internal static readonly List<NetworkConnection> waitingConnections = new List<NetworkConnection>();
+        internal static readonly List<NetworkConnectionToClient> waitingConnections = new List<NetworkConnectionToClient>();
 
         /// <summary>
         /// GUID of a match the local player has created
@@ -66,6 +67,17 @@ namespace Mirror.Examples.MultipleMatch
         public GameObject roomView;
         public RoomGUI roomGUI;
         public ToggleGroup toggleGroup;
+
+        // RuntimeInitializeOnLoadMethod -> fast playmode without domain reload
+        [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+        static void ResetStatics()
+        {
+            playerMatches.Clear();
+            openMatches.Clear();
+            matchConnections.Clear();
+            playerInfos.Clear();
+            waitingConnections.Clear();
+        }
 
         #region UI Functions
 
@@ -102,10 +114,9 @@ namespace Mirror.Examples.MultipleMatch
         /// Called from <see cref="MatchGUI.OnToggleClicked"/>
         /// </summary>
         /// <param name="matchId"></param>
+        [ClientCallback]
         public void SelectMatch(Guid matchId)
         {
-            if (!NetworkClient.active) return;
-
             if (matchId == Guid.Empty)
             {
                 selectedMatch = Guid.Empty;
@@ -128,96 +139,78 @@ namespace Mirror.Examples.MultipleMatch
         /// <summary>
         /// Assigned in inspector to Create button
         /// </summary>
+        [ClientCallback]
         public void RequestCreateMatch()
         {
-            if (!NetworkClient.active) return;
-
-            NetworkClient.connection.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Create });
-        }
-
-        /// <summary>
-        /// Assigned in inspector to Join button
-        /// </summary>
-        public void RequestJoinMatch()
-        {
-            if (!NetworkClient.active || selectedMatch == Guid.Empty) return;
-
-            NetworkClient.connection.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Join, matchId = selectedMatch });
-        }
-
-        /// <summary>
-        /// Assigned in inspector to Leave button
-        /// </summary>
-        public void RequestLeaveMatch()
-        {
-            if (!NetworkClient.active || localJoinedMatch == Guid.Empty) return;
-
-            NetworkClient.connection.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Leave, matchId = localJoinedMatch });
+            NetworkClient.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Create });
         }
 
         /// <summary>
         /// Assigned in inspector to Cancel button
         /// </summary>
+        [ClientCallback]
         public void RequestCancelMatch()
         {
-            if (!NetworkClient.active || localPlayerMatch == Guid.Empty) return;
+            if (localPlayerMatch == Guid.Empty) return;
 
-            NetworkClient.connection.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Cancel });
+            NetworkClient.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Cancel });
+        }
+
+        /// <summary>
+        /// Assigned in inspector to Join button
+        /// </summary>
+        [ClientCallback]
+        public void RequestJoinMatch()
+        {
+            if (selectedMatch == Guid.Empty) return;
+
+            NetworkClient.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Join, matchId = selectedMatch });
+        }
+
+        /// <summary>
+        /// Assigned in inspector to Leave button
+        /// </summary>
+        [ClientCallback]
+        public void RequestLeaveMatch()
+        {
+            if (localJoinedMatch == Guid.Empty) return;
+
+            NetworkClient.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Leave, matchId = localJoinedMatch });
         }
 
         /// <summary>
         /// Assigned in inspector to Ready button
         /// </summary>
+        [ClientCallback]
         public void RequestReadyChange()
         {
-            if (!NetworkClient.active || (localPlayerMatch == Guid.Empty && localJoinedMatch == Guid.Empty)) return;
+            if (localPlayerMatch == Guid.Empty && localJoinedMatch == Guid.Empty) return;
 
             Guid matchId = localPlayerMatch == Guid.Empty ? localJoinedMatch : localPlayerMatch;
 
-            NetworkClient.connection.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Ready, matchId = matchId });
+            NetworkClient.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Ready, matchId = matchId });
         }
 
         /// <summary>
         /// Assigned in inspector to Start button
         /// </summary>
+        [ClientCallback]
         public void RequestStartMatch()
         {
-            if (!NetworkClient.active || localPlayerMatch == Guid.Empty) return;
+            if (localPlayerMatch == Guid.Empty) return;
 
-            NetworkClient.connection.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Start });
+            NetworkClient.Send(new ServerMatchMessage { serverMatchOperation = ServerMatchOperation.Start });
         }
 
         /// <summary>
         /// Called from <see cref="MatchController.RpcExitGame"/>
         /// </summary>
+        [ClientCallback]
         public void OnMatchEnded()
         {
-            if (!NetworkClient.active) return;
-
             localPlayerMatch = Guid.Empty;
             localJoinedMatch = Guid.Empty;
             ShowLobbyView();
-        }
-
-        /// <summary>
-        /// Sends updated match list to all waiting connections or just one if specified
-        /// </summary>
-        /// <param name="conn"></param>
-        internal void SendMatchList(NetworkConnection conn = null)
-        {
-            if (!NetworkServer.active) return;
-
-            if (conn != null)
-            {
-                conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.List, matchInfos = openMatches.Values.ToArray() });
-            }
-            else
-            {
-                foreach (var waiter in waitingConnections)
-                {
-                    waiter.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.List, matchInfos = openMatches.Values.ToArray() });
-                }
-            }
         }
 
         #endregion
@@ -226,18 +219,16 @@ namespace Mirror.Examples.MultipleMatch
 
         // Methods in this section are called from MatchNetworkManager's corresponding methods
 
+        [ServerCallback]
         internal void OnStartServer()
         {
-            if (!NetworkServer.active) return;
-
             InitializeData();
             NetworkServer.RegisterHandler<ServerMatchMessage>(OnServerMatchMessage);
         }
 
-        internal void OnServerReady(NetworkConnection conn)
+        [ServerCallback]
+        internal void OnServerReady(NetworkConnectionToClient conn)
         {
-            if (!NetworkServer.active) return;
-
             waitingConnections.Add(conn);
             playerInfos.Add(conn, new PlayerInfo { playerIndex = this.playerIndex, ready = false });
             playerIndex++;
@@ -245,20 +236,18 @@ namespace Mirror.Examples.MultipleMatch
             SendMatchList();
         }
 
-        internal void OnServerDisconnect(NetworkConnection conn)
+        [ServerCallback]
+        internal IEnumerator OnServerDisconnect(NetworkConnectionToClient conn)
         {
-            if (!NetworkServer.active) return;
+            // Invoke OnPlayerDisconnect on all instances of MatchController
+            OnPlayerDisconnect?.Invoke(conn);
 
-            // Invoke OnPlayerDisconnected on all instances of MatchController
-            OnPlayerDisconnected?.Invoke(conn);
-
-            Guid matchId;
-            if (playerMatches.TryGetValue(conn, out matchId))
+            if (playerMatches.TryGetValue(conn, out Guid matchId))
             {
                 playerMatches.Remove(conn);
                 openMatches.Remove(matchId);
 
-                foreach (NetworkConnection playerConn in matchConnections[matchId])
+                foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
                 {
                     PlayerInfo _playerInfo = playerInfos[playerConn];
                     _playerInfo.ready = false;
@@ -268,53 +257,43 @@ namespace Mirror.Examples.MultipleMatch
                 }
             }
 
-            foreach (KeyValuePair<Guid, HashSet<NetworkConnection>> kvp in matchConnections)
-            {
+            foreach (KeyValuePair<Guid, HashSet<NetworkConnectionToClient>> kvp in matchConnections)
                 kvp.Value.Remove(conn);
-            }
 
             PlayerInfo playerInfo = playerInfos[conn];
             if (playerInfo.matchId != Guid.Empty)
             {
-                MatchInfo matchInfo;
-                if (openMatches.TryGetValue(playerInfo.matchId, out matchInfo))
+                if (openMatches.TryGetValue(playerInfo.matchId, out MatchInfo matchInfo))
                 {
                     matchInfo.players--;
                     openMatches[playerInfo.matchId] = matchInfo;
                 }
 
-                HashSet<NetworkConnection> connections;
+                HashSet<NetworkConnectionToClient> connections;
                 if (matchConnections.TryGetValue(playerInfo.matchId, out connections))
                 {
                     PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
 
-                    foreach (NetworkConnection playerConn in matchConnections[playerInfo.matchId])
-                    {
+                    foreach (NetworkConnectionToClient playerConn in matchConnections[playerInfo.matchId])
                         if (playerConn != conn)
-                        {
                             playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
-                        }
-                    }
                 }
             }
 
             SendMatchList();
+
+            yield return null;
         }
 
+        [ServerCallback]
         internal void OnStopServer()
         {
             ResetCanvas();
         }
 
-        internal void OnClientConnect(NetworkConnection conn)
-        {
-            playerInfos.Add(conn, new PlayerInfo { playerIndex = this.playerIndex, ready = false });
-        }
-
+        [ClientCallback]
         internal void OnStartClient()
         {
-            if (!NetworkClient.active) return;
-
             InitializeData();
             ShowLobbyView();
             createButton.gameObject.SetActive(true);
@@ -322,13 +301,13 @@ namespace Mirror.Examples.MultipleMatch
             NetworkClient.RegisterHandler<ClientMatchMessage>(OnClientMatchMessage);
         }
 
+        [ClientCallback]
         internal void OnClientDisconnect()
         {
-            if (!NetworkClient.active) return;
-
             InitializeData();
         }
 
+        [ClientCallback]
         internal void OnStopClient()
         {
             ResetCanvas();
@@ -338,10 +317,9 @@ namespace Mirror.Examples.MultipleMatch
 
         #region Server Match Message Handlers
 
-        void OnServerMatchMessage(NetworkConnection conn, ServerMatchMessage msg)
+        [ServerCallback]
+        void OnServerMatchMessage(NetworkConnectionToClient conn, ServerMatchMessage msg)
         {
-            if (!NetworkServer.active) return;
-
             switch (msg.serverMatchOperation)
             {
                 case ServerMatchOperation.None:
@@ -359,11 +337,6 @@ namespace Mirror.Examples.MultipleMatch
                         OnServerCancelMatch(conn);
                         break;
                     }
-                case ServerMatchOperation.Start:
-                    {
-                        OnServerStartMatch(conn);
-                        break;
-                    }
                 case ServerMatchOperation.Join:
                     {
                         OnServerJoinMatch(conn, msg.matchId);
@@ -379,63 +352,21 @@ namespace Mirror.Examples.MultipleMatch
                         OnServerPlayerReady(conn, msg.matchId);
                         break;
                     }
+                case ServerMatchOperation.Start:
+                    {
+                        OnServerStartMatch(conn);
+                        break;
+                    }
             }
         }
 
-        void OnServerPlayerReady(NetworkConnection conn, Guid matchId)
+        [ServerCallback]
+        void OnServerCreateMatch(NetworkConnectionToClient conn)
         {
-            if (!NetworkServer.active) return;
-
-            PlayerInfo playerInfo = playerInfos[conn];
-            playerInfo.ready = !playerInfo.ready;
-            playerInfos[conn] = playerInfo;
-
-            HashSet<NetworkConnection> connections = matchConnections[matchId];
-            PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
-
-            foreach (NetworkConnection playerConn in matchConnections[matchId])
-            {
-                playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
-            }
-        }
-
-        void OnServerLeaveMatch(NetworkConnection conn, Guid matchId)
-        {
-            if (!NetworkServer.active) return;
-
-            MatchInfo matchInfo = openMatches[matchId];
-            matchInfo.players--;
-            openMatches[matchId] = matchInfo;
-
-            PlayerInfo playerInfo = playerInfos[conn];
-            playerInfo.ready = false;
-            playerInfo.matchId = Guid.Empty;
-            playerInfos[conn] = playerInfo;
-
-            foreach (KeyValuePair<Guid, HashSet<NetworkConnection>> kvp in matchConnections)
-            {
-                kvp.Value.Remove(conn);
-            }
-
-            HashSet<NetworkConnection> connections = matchConnections[matchId];
-            PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
-
-            foreach (NetworkConnection playerConn in matchConnections[matchId])
-            {
-                playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
-            }
-
-            SendMatchList();
-
-            conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Departed });
-        }
-
-        void OnServerCreateMatch(NetworkConnection conn)
-        {
-            if (!NetworkServer.active || playerMatches.ContainsKey(conn)) return;
+            if (playerMatches.ContainsKey(conn)) return;
 
             Guid newMatchId = Guid.NewGuid();
-            matchConnections.Add(newMatchId, new HashSet<NetworkConnection>());
+            matchConnections.Add(newMatchId, new HashSet<NetworkConnectionToClient>());
             matchConnections[newMatchId].Add(conn);
             playerMatches.Add(conn, newMatchId);
             openMatches.Add(newMatchId, new MatchInfo { matchId = newMatchId, maxPlayers = 2, players = 1 });
@@ -452,9 +383,10 @@ namespace Mirror.Examples.MultipleMatch
             SendMatchList();
         }
 
-        void OnServerCancelMatch(NetworkConnection conn)
+        [ServerCallback]
+        void OnServerCancelMatch(NetworkConnectionToClient conn)
         {
-            if (!NetworkServer.active || !playerMatches.ContainsKey(conn)) return;
+            if (!playerMatches.ContainsKey(conn)) return;
 
             conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Cancelled });
 
@@ -464,7 +396,7 @@ namespace Mirror.Examples.MultipleMatch
                 playerMatches.Remove(conn);
                 openMatches.Remove(matchId);
 
-                foreach (NetworkConnection playerConn in matchConnections[matchId])
+                foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
                 {
                     PlayerInfo playerInfo = playerInfos[playerConn];
                     playerInfo.ready = false;
@@ -477,57 +409,10 @@ namespace Mirror.Examples.MultipleMatch
             }
         }
 
-        void OnServerStartMatch(NetworkConnection conn)
+        [ServerCallback]
+        void OnServerJoinMatch(NetworkConnectionToClient conn, Guid matchId)
         {
-            if (!NetworkServer.active || !playerMatches.ContainsKey(conn)) return;
-
-            Guid matchId;
-            if (playerMatches.TryGetValue(conn, out matchId))
-            {
-                GameObject matchControllerObject = Instantiate(matchControllerPrefab);
-                matchControllerObject.GetComponent<NetworkMatch>().matchId = matchId;
-                NetworkServer.Spawn(matchControllerObject);
-
-                MatchController matchController = matchControllerObject.GetComponent<MatchController>();
-
-                foreach (NetworkConnection playerConn in matchConnections[matchId])
-                {
-                    playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Started });
-
-                    GameObject player = Instantiate(NetworkManager.singleton.playerPrefab);
-                    player.GetComponent<NetworkMatch>().matchId = matchId;
-                    NetworkServer.AddPlayerForConnection(playerConn, player);
-
-                    if (matchController.player1 == null)
-                    {
-                        matchController.player1 = playerConn.identity;
-                    }
-                    else
-                    {
-                        matchController.player2 = playerConn.identity;
-                    }
-
-                    /* Reset ready state for after the match. */
-                    PlayerInfo playerInfo = playerInfos[playerConn];
-                    playerInfo.ready = false;
-                    playerInfos[playerConn] = playerInfo;
-                }
-
-                matchController.startingPlayer = matchController.player1;
-                matchController.currentPlayer = matchController.player1;
-
-                playerMatches.Remove(conn);
-                openMatches.Remove(matchId);
-                matchConnections.Remove(matchId);
-                SendMatchList();
-
-                OnPlayerDisconnected += matchController.OnPlayerDisconnected;
-            }
-        }
-
-        void OnServerJoinMatch(NetworkConnection conn, Guid matchId)
-        {
-            if (!NetworkServer.active || !matchConnections.ContainsKey(matchId) || !openMatches.ContainsKey(matchId)) return;
+            if (!matchConnections.ContainsKey(matchId) || !openMatches.ContainsKey(matchId)) return;
 
             MatchInfo matchInfo = openMatches[matchId];
             matchInfo.players++;
@@ -544,20 +429,116 @@ namespace Mirror.Examples.MultipleMatch
 
             conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Joined, matchId = matchId, playerInfos = infos });
 
-            foreach (NetworkConnection playerConn in matchConnections[matchId])
-            {
+            foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
                 playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
+        }
+
+        [ServerCallback]
+        void OnServerLeaveMatch(NetworkConnectionToClient conn, Guid matchId)
+        {
+            MatchInfo matchInfo = openMatches[matchId];
+            matchInfo.players--;
+            openMatches[matchId] = matchInfo;
+
+            PlayerInfo playerInfo = playerInfos[conn];
+            playerInfo.ready = false;
+            playerInfo.matchId = Guid.Empty;
+            playerInfos[conn] = playerInfo;
+
+            foreach (KeyValuePair<Guid, HashSet<NetworkConnectionToClient>> kvp in matchConnections)
+                kvp.Value.Remove(conn);
+
+            HashSet<NetworkConnectionToClient> connections = matchConnections[matchId];
+            PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
+
+            foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
+                playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
+
+            SendMatchList();
+
+            conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Departed });
+        }
+
+        [ServerCallback]
+        void OnServerPlayerReady(NetworkConnectionToClient conn, Guid matchId)
+        {
+            PlayerInfo playerInfo = playerInfos[conn];
+            playerInfo.ready = !playerInfo.ready;
+            playerInfos[conn] = playerInfo;
+
+            HashSet<NetworkConnectionToClient> connections = matchConnections[matchId];
+            PlayerInfo[] infos = connections.Select(playerConn => playerInfos[playerConn]).ToArray();
+
+            foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
+                playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.UpdateRoom, playerInfos = infos });
+        }
+
+        [ServerCallback]
+        void OnServerStartMatch(NetworkConnectionToClient conn)
+        {
+            if (!playerMatches.ContainsKey(conn)) return;
+
+            Guid matchId;
+            if (playerMatches.TryGetValue(conn, out matchId))
+            {
+                GameObject matchControllerObject = Instantiate(matchControllerPrefab);
+                matchControllerObject.GetComponent<NetworkMatch>().matchId = matchId;
+                NetworkServer.Spawn(matchControllerObject);
+
+                MatchController matchController = matchControllerObject.GetComponent<MatchController>();
+
+                foreach (NetworkConnectionToClient playerConn in matchConnections[matchId])
+                {
+                    playerConn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.Started });
+
+                    GameObject player = Instantiate(NetworkManager.singleton.playerPrefab);
+                    player.GetComponent<NetworkMatch>().matchId = matchId;
+                    NetworkServer.AddPlayerForConnection(playerConn, player);
+
+                    if (matchController.player1 == null)
+                        matchController.player1 = playerConn.identity;
+                    else
+                        matchController.player2 = playerConn.identity;
+
+                    /* Reset ready state for after the match. */
+                    PlayerInfo playerInfo = playerInfos[playerConn];
+                    playerInfo.ready = false;
+                    playerInfos[playerConn] = playerInfo;
+                }
+
+                matchController.startingPlayer = matchController.player1;
+                matchController.currentPlayer = matchController.player1;
+
+                playerMatches.Remove(conn);
+                openMatches.Remove(matchId);
+                matchConnections.Remove(matchId);
+                SendMatchList();
+
+                OnPlayerDisconnect += matchController.OnPlayerDisconnect;
             }
+        }
+
+        /// <summary>
+        /// Sends updated match list to all waiting connections or just one if specified
+        /// </summary>
+        /// <param name="conn"></param>
+        [ServerCallback]
+        internal void SendMatchList(NetworkConnectionToClient conn = null)
+        {
+            if (conn != null)
+                conn.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.List, matchInfos = openMatches.Values.ToArray() });
+            else
+                foreach (NetworkConnectionToClient waiter in waitingConnections)
+                    waiter.Send(new ClientMatchMessage { clientMatchOperation = ClientMatchOperation.List, matchInfos = openMatches.Values.ToArray() });
         }
 
         #endregion
 
         #region Client Match Message Handler
 
+        [ClientCallback]
         void OnClientMatchMessage(ClientMatchMessage msg)
         {
-            if (!NetworkClient.active) return;
-
             switch (msg.clientMatchOperation)
             {
                 case ClientMatchOperation.None:
@@ -569,9 +550,8 @@ namespace Mirror.Examples.MultipleMatch
                     {
                         openMatches.Clear();
                         foreach (MatchInfo matchInfo in msg.matchInfos)
-                        {
                             openMatches.Add(matchInfo.matchId, matchInfo);
-                        }
+
                         RefreshMatchList();
                         break;
                     }
@@ -617,34 +597,32 @@ namespace Mirror.Examples.MultipleMatch
             }
         }
 
+        [ClientCallback]
         void ShowLobbyView()
         {
             lobbyView.SetActive(true);
             roomView.SetActive(false);
 
             foreach (Transform child in matchList.transform)
-            {
                 if (child.gameObject.GetComponent<MatchGUI>().GetMatchId() == selectedMatch)
                 {
                     Toggle toggle = child.gameObject.GetComponent<Toggle>();
                     toggle.isOn = true;
-                    //toggle.onValueChanged.Invoke(true);
                 }
-            }
         }
 
+        [ClientCallback]
         void ShowRoomView()
         {
             lobbyView.SetActive(false);
             roomView.SetActive(true);
         }
 
+        [ClientCallback]
         void RefreshMatchList()
         {
             foreach (Transform child in matchList.transform)
-            {
                 Destroy(child.gameObject);
-            }
 
             joinButton.interactable = false;
 
@@ -653,15 +631,14 @@ namespace Mirror.Examples.MultipleMatch
                 GameObject newMatch = Instantiate(matchPrefab, Vector3.zero, Quaternion.identity);
                 newMatch.transform.SetParent(matchList.transform, false);
                 newMatch.GetComponent<MatchGUI>().SetMatchInfo(matchInfo);
-                newMatch.GetComponent<Toggle>().group = toggleGroup;
+
+                Toggle toggle = newMatch.GetComponent<Toggle>();
+                toggle.group = toggleGroup;
                 if (matchInfo.matchId == selectedMatch)
-                {
-                    newMatch.GetComponent<Toggle>().isOn = true;
-                }
+                    toggle.isOn = true;
             }
         }
 
         #endregion
-
     }
 }

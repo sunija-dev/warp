@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
@@ -11,7 +12,7 @@ namespace Mirror
             string typeName = typeof(T).Name;
 
             string[] guidsFound = AssetDatabase.FindAssets($"t:Script {typeName}");
-            if (guidsFound.Length >= 1 && !string.IsNullOrEmpty(guidsFound[0]))
+            if (guidsFound.Length >= 1 && !string.IsNullOrWhiteSpace(guidsFound[0]))
             {
                 if (guidsFound.Length > 1)
                 {
@@ -25,6 +26,15 @@ namespace Mirror
             {
                 Debug.LogError($"Could not find path of {typeName}");
                 return string.Empty;
+            }
+        }
+
+
+        public static IEnumerable<string> IterateOverProject(string filter)
+        {
+            foreach (string guid in AssetDatabase.FindAssets(filter))
+            {
+                yield return AssetDatabase.GUIDToAssetPath(guid);
             }
         }
     }

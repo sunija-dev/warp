@@ -129,7 +129,7 @@ public class ServerManager : MonoBehaviour
         // apply values
         m_interestManagment.visRange = (int)m_settings.fVisibilityRange;
         m_interestManagment.rebuildInterval = m_settings.fInterestRebuildInterval;
-        WarpNetworkManager.Instance.serverTickRate = m_settings.iTickRate;
+        WarpNetworkManager.Instance.sendRate = m_settings.iTickRate;
     }
 
     public static string strGetAccountID(NetworkConnection _networkConnection)
