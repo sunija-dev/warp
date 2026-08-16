@@ -63,7 +63,7 @@ namespace warp_starter
                                             "Starte WARP...",
                                             "Démarrage de WARP...",
                                             "Iniciando WARP...");
-            wnd.Show();
+            //wnd.Show();
 
             string strInstallPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "/";
             //string strClientPath = strInstallPath + "WARP";
@@ -71,12 +71,15 @@ namespace warp_starter
             if (File.Exists(strExePath))
             {
                 Process p = new Process();
-                p.StartInfo = new ProcessStartInfo(strExePath, "-popupwindow");
+                p.StartInfo = new ProcessStartInfo(strExePath)//, "-popupwindow")
+                {
+                    WorkingDirectory = strInstallPath
+                };
                 p.Start();
             }
 
             System.Threading.Thread.Sleep(4000);
-            wnd.Hide();
+            //wnd.Hide();
         }
 
 
