@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
+#if !UNITY_SERVER
 using System.Security.AccessControl;
+#endif
 using System.Threading;
 using System.Threading.Tasks;
 using Blish_HUD.Controls.Extern;
@@ -339,6 +341,7 @@ public class GameIntegration : MonoBehaviour
 
     private string GetGw2PathFromRegistry()
     {
+#if !UNITY_SERVER
         try
         {
             using (var regKeyGw2 = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry64).OpenSubKey(GW2_REGISTRY_KEY, RegistryRights.ReadKey))
@@ -358,7 +361,7 @@ public class GameIntegration : MonoBehaviour
         {
             //Logger.Warn(ex, "Failed to read Guild Wars 2 path from registry value {registryKey} located at {registryPath}.", GW2_REGISTRY_PATH_SV, GW2_REGISTRY_KEY);
         }
-
+#endif
         return string.Empty;
     }
 

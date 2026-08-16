@@ -8,7 +8,8 @@ public class OnlyServer : MonoBehaviour
     {
         if (!(WarpManager.Instance.m_warpMode == WarpManager.WarpMode.HOST 
             || WarpManager.Instance.m_warpMode == WarpManager.WarpMode.SERVER
-            || Application.platform == RuntimePlatform.LinuxPlayer))
+            || Application.platform == RuntimePlatform.LinuxPlayer
+            || Application.platform == RuntimePlatform.LinuxServer))
         {
             gameObject.SetActive(false);
             Destroy(this.gameObject);

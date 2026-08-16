@@ -6,7 +6,8 @@ public class OnlyClient : MonoBehaviour
 {
     public void Awake()
     {
-        if (Application.platform == RuntimePlatform.LinuxPlayer)
+        if (Application.platform == RuntimePlatform.LinuxPlayer
+            || Application.platform == RuntimePlatform.LinuxServer)
             gameObject.SetActive(false);
     }    
 }

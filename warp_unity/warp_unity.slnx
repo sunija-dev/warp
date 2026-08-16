@@ -1,12 +1,15 @@
 ﻿<Solution>
   <Project Path="Mirror.csproj" />
+  <Project Path="NaughtyAttributes.Test.csproj" />
   <Project Path="Edgegap.csproj" />
+  <Project Path="NaughtyAttributes.Core.csproj" />
   <Project Path="Unity.Mirror.CodeGen.csproj" />
   <Project Path="Mirror.Components.csproj" />
   <Project Path="Mirror.Examples.csproj" />
   <Project Path="Mirror.Editor.csproj" />
   <Project Path="Mirror.Transports.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="kcp2k.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="SimpleWebTransport.csproj" />

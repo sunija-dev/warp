@@ -13281,7 +13281,7 @@ MonoBehaviour:
   onlineScene: Assets/scenes/main_scene.unity
   offlineSceneLoadDelay: 0
   transport: {fileID: 308211411}
-  networkAddress: lavch.de
+  networkAddress: sunija.com
   maxConnections: 400
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
@@ -59175,11 +59175,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_warpMode: 1
-  m_bLocalHost: 1
-  m_bLocalClientMina: 0
-  m_bOnlineTest: 0
-  m_bUseMinaData: 1
-  m_bLocalTest: 0
+  m_bConnectToLocal: 0
+  m_bUseMinaData: 0
+  m_bUsePTRPort: 0
   m_bAutoStart: 1
   arVersionDeleteSettingsIfOlder: 000000000600000006000000
   networkManager: {fileID: 308211412}
@@ -74829,6 +74827,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d778242659ef867449ef8e2933d905a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_bLogIfWarpChangesVisibility: 1
   m_textFocusWarp: {fileID: 2059161785}
   m_textFocusGW2: {fileID: 1960744236}
   m_textFocusGW2Window: {fileID: 627901955}

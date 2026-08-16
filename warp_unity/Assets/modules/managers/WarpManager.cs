@@ -1,23 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using NaughtyAttributes;
 
 public class WarpManager : MonoBehaviour
 {
     public static WarpManager Instance;
 
+    [Header("Test Options")]
     public WarpMode m_warpMode;
-
     public enum WarpMode { HOST, CLIENT, SERVER }
-
-    [Header("TestOptions")]
-    public bool m_bLocalHost = false;
-    public bool m_bLocalClientMina = false;
-    public bool m_bOnlineTest = false;
-
-    [Header("Detailed Test Options")]
+    [Tooltip("Connects to your local pc instead of the warp server.")]
+    [ShowIf(nameof(m_warpMode), WarpMode.CLIENT)] public bool m_bConnectToLocal = false;
+    [Tooltip("Simulates minimal mumble data (character name and position) so you can test without having GW2 open.")]
     public bool m_bUseMinaData = false;
-    public bool m_bLocalTest = false;
+    public bool m_bUsePTRPort = false;
 
     [Header("Other Options")]
     public bool m_bAutoStart = true;
@@ -31,38 +28,27 @@ public class WarpManager : MonoBehaviour
     {
         Instance = this;
 
-        if (m_bLocalTest)
-        {
-            networkManager.networkAddress = "localhost";
-        }
+        if (m_warpMode == WarpMode.HOST)
+            m_bConnectToLocal = true;
 
-        if (m_bLocalClientMina)
-        {
-            m_bUseMinaData = true;
-            m_warpMode = WarpMode.CLIENT;
+        if (m_bConnectToLocal)
             networkManager.networkAddress = "localhost";
-        }
 
-        if (m_bLocalHost)
-        {
-            m_bUseMinaData = false;
-            m_warpMode = WarpMode.HOST;
-            networkManager.networkAddress = "localhost";
-        }
-
-        if (m_bOnlineTest)
+        if (m_bUsePTRPort)
         {
             networkManager.GetComponent<Mirror.TelepathyTransport>().port = 7778;
             if (m_goTestMarker)
                 m_goTestMarker.SetActive(true);
         }
-            
-
+    
         // start first, because setup needs the player object (to save language and region)
         if (m_bAutoStart)
         {
-            if (Application.platform == RuntimePlatform.LinuxPlayer)
+            if (Application.platform == RuntimePlatform.LinuxPlayer || Application.platform == RuntimePlatform.LinuxServer)
+            {
+                Debug.Log("Starting server");
                 networkManager.StartServer();
+            }
             else
             {
                 if (m_warpMode == WarpMode.HOST)
