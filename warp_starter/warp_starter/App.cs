@@ -56,6 +56,7 @@ namespace warp_starter
             CultureInfo ci = CultureInfo.CurrentCulture;
             //strLanguage = ci.Name.Substring(0, 2);
 
+            /*
             MainWindow wnd = new MainWindow();
             wnd.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             wnd.Title = "WARP Starter";
@@ -63,6 +64,7 @@ namespace warp_starter
                                             "Starte WARP...",
                                             "Démarrage de WARP...",
                                             "Iniciando WARP...");
+            */
             //wnd.Show();
 
             string strInstallPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "/";
