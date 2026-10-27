@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Troubleshooting – WARP</title>
+  <meta name="description" content="Solutions for common WARP problems: WARP not visible, black screen, download issues.">
+  <link rel="icon" type="image/png" href="img/favicon.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="index.html" class="logo" aria-label="WARP home"><img src="img/logo.png" alt="" width="40" height="40"></a>
+      <nav class="nav">
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="faq.html">FAQ</a>
+        <a href="data/warp_patcher.exe" class="btn btn-small">Download</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <h1>Troubleshooting</h1>
+      </div>
+    </section>
+
+    <article class="page-content">
+      <p class="callout">
+        You are unsure how to follow these instructions? Your problem isn't here?<br>
+        Just join our <a href="https://discord.gg/5kTXhKg">Discord</a>, or write to sunija on Discord! <strong>♥</strong>
+      </p>
+
+      <h2>“I cannot see WARP ingame!”</h2>
+      <p>Ensure that you set the following option in GW2:<br>
+        Options → Graphic Options → Resolution, select “<strong>Windowed Fullscreen</strong>”.</p>
+
+      <h2>“I cannot see the WARP icon, but I can see WARP icons on the map.”</h2>
+      <p>Start WARP in admin mode:</p>
+      <ol>
+        <li>Go to your WARP folder.</li>
+        <li><strong>Right-click</strong> warp.exe → <strong>Properties</strong>.</li>
+        <li>Select <strong>Compatibility</strong> at the top.</li>
+        <li>Check <strong>“Run this program as an administrator”</strong> at the bottom.</li>
+        <li>Repeat steps 2–4 for <strong>warp_starter.exe</strong>!</li>
+      </ol>
+      <p>Background: This happens if you start GW2 in admin mode. So, alternatively, you could also not start GW2 in admin mode.</p>
+
+      <h2>“My screen is black!”</h2>
+      <ol>
+        <li>Open <strong>NVIDIA Control Panel → 3D Settings → Manage 3D settings</strong>.</li>
+        <li>Under the <strong>Program Settings</strong> tab in the main panel, select WARP in the dropdown.</li>
+        <li>Make sure that all settings applied to WARP are the default, or as in the picture below.</li>
+        <li>Apply the changes.</li>
+        <li>Restart WARP.</li>
+      </ol>
+      <figure class="shot">
+        <img src="img/ts_nvidia.webp" alt="NVIDIA Control Panel program settings for WARP" loading="lazy">
+      </figure>
+
+      <h2>“WARP isn’t downloaded correctly.”</h2>
+      <ol>
+        <li>Make sure you didn’t install WARP in C:/Programs.<br>
+          Rather use your download folder, or “C:\Users\[YOUR USERNAME]\Documents”.</li>
+        <li>If the patcher gets stuck, download WARP directly from<br>
+          <a href="https://weltenrast.de/data/recore/WARP.zip">https://weltenrast.de/data/recore/WARP.zip</a><br>
+          Unpack it, then start warp_starter.exe.<br>
+          Please inform us on Discord, so we can go fix it.</li>
+      </ol>
+
+      <h2>“I've got another problem!”</h2>
+      <ol>
+        <li>Make sure that your <strong>antivirus</strong> program didn't delete parts of WARP.<br>
+          Your WARP folder should look like the picture below.</li>
+        <li>Tell us on <a href="https://discord.gg/5kTXhKg">Discord</a>, or just write to sunija!</li>
+      </ol>
+      <figure class="shot">
+        <img src="img/ts_folder.webp" alt="Contents of a correct WARP folder" loading="lazy">
+      </figure>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <nav class="nav">
+        <a href="troubleshooting.html">Troubleshooting</a>
+        <a href="faq.html">FAQ</a>
+        <a href="data/warp_patcher.exe" class="btn btn-small">Download</a>
+      </nav>
+      <p class="legal">
+        Copyright © gw2warp 2021<br>
+        All rights belong to their respective owners.<br>
+        Artworks from Guild Wars 2 belong to ©2021 ArenaNet, LLC.
+      </p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

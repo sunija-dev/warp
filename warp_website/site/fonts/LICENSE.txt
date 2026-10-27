@@ -1,0 +1,20 @@
+The fonts in this folder are NOT covered by the MIT license of the WARP repository.
+They are included only so the WARP fan website can display them. Do not reuse them
+in your own projects without getting permission from their owners.
+
+
+menomonia.ttf
+-------------
+Menomonia is the interface font of Guild Wars 2.
+©ArenaNet, LLC. All rights reserved.
+Used here as part of a Guild Wars 2 fan project.
+
+
+eason-inline-caps.ttf
+---------------------
+Eason (Inline Caps) was created by Randy Jones and is the font used by Guild Wars 2
+in trailers and promotional artworks.
+Randy was so nice to allow the use of his font for fan usage. <3
+
+Randy's website: http://www.aquatoad.com/
+His other fonts: http://luc.devroye.org/fonts-41208.html
