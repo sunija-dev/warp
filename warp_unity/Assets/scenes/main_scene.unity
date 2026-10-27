@@ -13275,7 +13275,7 @@ MonoBehaviour:
   dontDestroyOnLoad: 0
   runInBackground: 1
   headlessStartMode: 1
-  editorAutoStart: 1
+  editorAutoStart: 0
   sendRate: 30
   offlineScene: Assets/scenes/main_scene.unity
   onlineScene: Assets/scenes/main_scene.unity

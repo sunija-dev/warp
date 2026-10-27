@@ -4,7 +4,7 @@ while(true)
 do
 	if [ -f "SERVER_LINUX.zip" ] 
 	then
-		unzip SERVER_LINUX.zip
+		unzip -o SERVER_LINUX.zip
 		rm SERVER_LINUX.zip
 	fi
 	chmod u+x warp_server.x86_64

@@ -6,6 +6,7 @@
 [Bb]uild_PC/
 [Bb]uild_Server/
 [Dd]b_backups/**
+/[Uu]ser[Ss]ettings/
 Assets/AssetStoreTools*
 
 server_settings.txt

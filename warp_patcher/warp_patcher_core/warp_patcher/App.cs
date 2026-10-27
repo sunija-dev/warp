@@ -105,7 +105,7 @@ namespace warp_patcher_ui
                 wc.DownloadProgressChanged += wc_DownloadProgressChanged;
                 wc.DownloadFileAsync(
                     // Param1 = Link of file
-                    new System.Uri("https://weltenrast.de/data/recore/WARP.zip"),
+                    new System.Uri("https://gw2warp.com/data/recore/WARP.zip"),
                     // Param2 = Path to save    
                     strClientDownload
                 );

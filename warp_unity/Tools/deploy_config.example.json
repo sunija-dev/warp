@@ -1,0 +1,7 @@
+{
+  "host": "your.server.example",
+  "port": 22,
+  "user": "warp",
+  "keyFile": "C:\\Users\\Sunija\\.ssh\\id_ed25519",
+  "remoteDir": "/home/YOURUSER/warp"
+}

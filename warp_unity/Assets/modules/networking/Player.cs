@@ -83,6 +83,8 @@ public class Player : NetworkBehaviour
         yield return new WaitUntil(() => !string.IsNullOrEmpty(MumbleManager.s_gw2Info.identity.strName));
         string strCharLoggedIn = MumbleManager.s_gw2Info.identity.strName;
 
+        Debug.Log("Received char name from mumble: " + strCharLoggedIn);
+
         Settings.AccountData accountDataCurrent = new Settings.AccountData();
 
         // find out which account to use for login
@@ -125,6 +127,8 @@ public class Player : NetworkBehaviour
                 }
             }
         }
+
+        Debug.Log($"Found account {accountDataCurrent.strAccountName} for char {strCharLoggedIn}. Logging in...");
 
         // log in using the account
         account.language = accountDataCurrent.language;

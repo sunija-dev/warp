@@ -3,3 +3,9 @@ daily_log.txt
 warp_unity/icons_download/
 .vs/
 warp_unity/Logs/
+
+# Server deploy settings
+warp_unity/Tools/deploy_config.json
+
+# Website: patcher is too big for GitHub, upload it to the server directly
+warp_website/site/data/warp_patcher.exe
