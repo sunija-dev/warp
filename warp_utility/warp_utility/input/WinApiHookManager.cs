@@ -1,6 +1,6 @@
-﻿using System.Threading;
-using System.Windows.Forms;
-using Timer = System.Windows.Forms.Timer;
+﻿using System;
+using System.Threading;
+using Blish_HUD.Input.WinApi;
 
 namespace Blish_HUD.Input {
 
@@ -12,6 +12,7 @@ namespace Blish_HUD.Input {
         private readonly IKeyboardHookManager keyboardHookManager;
         private          bool                 stopRequested = false;
         private          Thread               thread;
+        private          uint                 threadId;
         private          AutoResetEvent       inputHookEvent  = new AutoResetEvent(false);
         private          bool                 inputSuccessful = false;
 
@@ -46,6 +47,7 @@ namespace Blish_HUD.Input {
             keyboardHookManager.DisableHook();
 
             stopRequested = true;
+            HookExtern.PostThreadMessage(threadId, HookExtern.WM_QUIT, IntPtr.Zero, IntPtr.Zero);
             thread.Join();
 
             stopRequested = false;
@@ -61,30 +63,23 @@ namespace Blish_HUD.Input {
         public void UnregisterKeyboardHandler(HandleKeyboardInputDelegate handleKeyboardInputCallback) { keyboardHookManager.UnregisterHandler(handleKeyboardInputCallback); }
 
         private void Loop() {
-            //using Timer timer = new Timer {
-            //    Interval = 10
-            //};
+            threadId = HookExtern.GetCurrentThreadId();
 
-            using (Timer timer = new Timer{Interval = 10})
-            { 
-                timer.Tick += (sender, e) => {
-                    if (stopRequested) {
-                        //Logger.Debug("Stopping message loop");
-                        Application.ExitThread();
-                    }
-                };
+            // Forces the thread's message queue to exist, so DisableHook's WM_QUIT can't get lost
+            HookExtern.PeekMessage(out HookExtern.MSG msg, IntPtr.Zero, 0, 0, HookExtern.PM_NOREMOVE);
 
-                if (mouseHookManager.EnableHook() && keyboardHookManager.EnableHook()) inputSuccessful = true;
-                inputHookEvent.Set();
+            if (mouseHookManager.EnableHook() && keyboardHookManager.EnableHook()) inputSuccessful = true;
+            inputHookEvent.Set();
 
-                timer.Start();
+            //Logger.Debug("Starting message loop");
 
-                //Logger.Debug("Starting message loop");
-
-                // Start the message loop
-                Application.Run();
-                //Logger.Debug("Message loop stopped");
+            // Low-level hooks are called through this thread's message loop. GetMessage returns 0 on WM_QUIT and -1 on error.
+            while (HookExtern.GetMessage(out msg, IntPtr.Zero, 0, 0) > 0) {
+                HookExtern.TranslateMessage(ref msg);
+                HookExtern.DispatchMessage(ref msg);
             }
+
+            //Logger.Debug("Message loop stopped");
         }
 
         #region IDisposable Support

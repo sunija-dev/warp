@@ -9,3 +9,5 @@ warp_unity/Tools/deploy_config.json
 
 # Website: patcher is too big for GitHub, upload it to the server directly
 warp_website/site/data/warp_patcher.exe
+warp_unity/Database.sqlite
+warp_unity/Database_debug.sqlite

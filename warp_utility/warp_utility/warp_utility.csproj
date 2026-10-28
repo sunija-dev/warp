@@ -178,6 +178,6 @@
     <Error Condition="!Exists('..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MonoGame.Framework.WindowsDX.3.8.0.1641\build\MonoGame.Framework.WindowsDX.targets'))" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>xcopy "$(SolutionDir)$(TargetName)\bin\$(Configuration)" "C:\Data\warp\warp_unity\Assets\external\" /s /i /y</PostBuildEvent>
+    <PostBuildEvent>xcopy "$(TargetPath)" "$(ProjectDir)..\..\warp_unity\Assets\external\" /i /y</PostBuildEvent>
   </PropertyGroup>
 </Project>

@@ -2,6 +2,7 @@
 //using Blish_HUD.Controls;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
+using Blish_HUD.Input.WinApi;
 using Warp.Utility;
 
 namespace Blish_HUD.Input {
@@ -103,7 +104,11 @@ namespace Blish_HUD.Input {
 
             var prevMouseState = this.State;
 
-            var rawMouseState = Microsoft.Xna.Framework.Input.Mouse.GetState();
+            // Not Microsoft.Xna.Framework.Input.Mouse.GetState(): MonoGame's WindowsDX version goes through WinForms,
+            // which throws on keyboard layouts Mono doesn't know (e.g. es-419). GetAsyncKeyState reports physical buttons, so swap them back.
+            bool bSwapped = HookExtern.GetSystemMetrics(HookExtern.SM_SWAPBUTTON) != 0;
+            bool bLeft    = IsButtonDown(bSwapped ? HookExtern.VK_RBUTTON : HookExtern.VK_LBUTTON);
+            bool bRight   = IsButtonDown(bSwapped ? HookExtern.VK_LBUTTON : HookExtern.VK_RBUTTON);
 
             /*
             this.State = new MouseState((int) (rawMouseState.X / GameService.Graphics.UIScaleMultiplier),
@@ -119,11 +124,11 @@ namespace Blish_HUD.Input {
             this.SuState = new SuMouseState((int)(PositionRaw.X),
                                         (int)(PositionRaw.Y),
                                         _mouseEvent?.WheelDelta ?? 0,
-                                        rawMouseState.LeftButton == ButtonState.Pressed,
-                                        rawMouseState.MiddleButton == ButtonState.Pressed,
-                                        rawMouseState.RightButton == ButtonState.Pressed,
-                                        rawMouseState.XButton1 == ButtonState.Pressed,
-                                        rawMouseState.XButton2 == ButtonState.Pressed);
+                                        bLeft,
+                                        IsButtonDown(HookExtern.VK_MBUTTON),
+                                        bRight,
+                                        IsButtonDown(HookExtern.VK_XBUTTON1),
+                                        IsButtonDown(HookExtern.VK_XBUTTON2));
 
             // Handle mouse moved
             if (prevMouseState.Position != this.State.Position) 
@@ -187,6 +192,8 @@ namespace Blish_HUD.Input {
         public void OnDisable() {
             /* NOOP */
         }
+
+        private static bool IsButtonDown(int _iVirtualKey) { return (HookExtern.GetAsyncKeyState(_iVirtualKey) & 0x8000) != 0; }
 
         public void SetHudFocused(bool _bFocused)
         {

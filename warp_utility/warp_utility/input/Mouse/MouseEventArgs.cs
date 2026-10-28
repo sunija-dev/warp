@@ -41,7 +41,8 @@ namespace Blish_HUD.Input {
         public int WheelDelta {
             get {
                 int v                                              = Convert.ToInt32((this.MouseData & 0xFFFF0000) >> 16);
-                if (v > SystemInformation.MouseWheelScrollDelta) v -= ushort.MaxValue + 1;
+                // 120 = WHEEL_DELTA. Not SystemInformation.MouseWheelScrollDelta, since touching WinForms throws on keyboard layouts Mono doesn't know (e.g. es-419)
+                if (v > 120) v -= ushort.MaxValue + 1;
                 return v;
             }
         }

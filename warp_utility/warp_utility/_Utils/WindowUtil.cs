@@ -201,7 +201,8 @@ namespace Blish_HUD
 
             // If Guild Wars 2 is not the focused application, set Blish HUD to
             // be above Guild Wars 2, but below the next application's window in z-order
-            if (activeWindowHandle != gw2WindowHandle && Form.ActiveForm == null)
+            // No Form.ActiveForm check: WARP has no WinForms forms, and touching WinForms throws on keyboard layouts Mono doesn't know (e.g. es-419)
+            if (activeWindowHandle != gw2WindowHandle)
             {
                 if (wasOnTop)
                 {
