@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 // Code from BlishHUD, heavily edited
@@ -70,6 +71,7 @@ namespace warp_starter
             string strInstallPath = Path.GetDirectoryName(System.Diagnostics.Process.GetCurrentProcess().MainModule.FileName) + "/";
             //string strClientPath = strInstallPath + "WARP";
             string strExePath = strInstallPath + "/warp.exe";
+            Stopwatch stopwatch = Stopwatch.StartNew();
             if (File.Exists(strExePath))
             {
                 Process p = new Process();
@@ -78,11 +80,67 @@ namespace warp_starter
                     WorkingDirectory = strInstallPath
                 };
                 p.Start();
+                HideWarpWindowOnStartup(p, 4000);
             }
 
-            System.Threading.Thread.Sleep(4000);
+            System.Threading.Thread.Sleep(Math.Max(0, 4000 - (int)stopwatch.ElapsedMilliseconds));
             //wnd.Hide();
         }
+
+        // Unity shows its window as a plain white window until it has loaded. Make it transparent the moment it exists.
+        // WARP restores the window style itself once it has turned into the overlay (TransparentWindow.SetupOverlay).
+        private static void HideWarpWindowOnStartup(Process _process, int _iTimeoutMs)
+        {
+            Stopwatch stopwatch = Stopwatch.StartNew();
+            timeBeginPeriod(1); // so Sleep(1) really waits ~1ms instead of ~15ms
+            try
+            {
+                while (stopwatch.ElapsedMilliseconds < _iTimeoutMs && !_process.HasExited)
+                {
+                    IntPtr hwnd = IntPtr.Zero;
+                    while ((hwnd = FindWindowEx(IntPtr.Zero, hwnd, "UnityWndClass", null)) != IntPtr.Zero)
+                    {
+                        GetWindowThreadProcessId(hwnd, out uint uProcessId);
+                        if (uProcessId != (uint)_process.Id)
+                            continue;
+
+                        SetWindowLong(hwnd, GWL_EXSTYLE, GetWindowLong(hwnd, GWL_EXSTYLE) | WS_EX_LAYERED);
+                        SetLayeredWindowAttributes(hwnd, 0, 0, LWA_ALPHA);
+                        return;
+                    }
+                    System.Threading.Thread.Sleep(1);
+                }
+            }
+            finally
+            {
+                timeEndPeriod(1);
+            }
+        }
+
+        private const int GWL_EXSTYLE = -20;
+        private const uint WS_EX_LAYERED = 0x00080000;
+        private const uint LWA_ALPHA = 0x00000002;
+
+        [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+        private static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
+        [DllImport("user32.dll")]
+        private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
+        [DllImport("user32.dll")]
+        private static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
+
+        [DllImport("user32.dll")]
+        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, uint dwNewLong);
+
+        [DllImport("user32.dll")]
+        private static extern bool SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
+
+        [DllImport("winmm.dll")]
+        private static extern uint timeBeginPeriod(uint uPeriod);
+
+        [DllImport("winmm.dll")]
+        private static extern uint timeEndPeriod(uint uPeriod);
 
 
         //private Form _formWrapper;

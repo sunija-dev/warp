@@ -34,6 +34,15 @@ public class TransparentWindow : MonoBehaviour
     [DllImport("user32.dll")]
     static extern int SetLayeredWindowAttributes(IntPtr hwnd, uint crKey, byte bAlpha, uint dwFlags);
 
+    [DllImport("user32.dll")]
+    private static extern uint GetWindowLong(IntPtr hWnd, int nIndex);
+
+    [DllImport("user32.dll", CharSet = CharSet.Unicode)]
+    private static extern IntPtr FindWindowEx(IntPtr hwndParent, IntPtr hwndChildAfter, string lpszClass, string lpszWindow);
+
+    [DllImport("user32.dll")]
+    private static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
+
     private struct MARGINS {
         public int cxLeftWidth;
         public int cxRightWidth;
@@ -51,7 +60,10 @@ public class TransparentWindow : MonoBehaviour
     private const int WS_EX_TOOLWINDOW = 0x0080; // makes taskbar icon disappear
     static readonly IntPtr HWND_TOPMOST = new IntPtr(-1);
     const uint LWA_COLORKEY = 0x00000001;
+    const uint LWA_ALPHA = 0x00000002;
     private static IntPtr hwndWARP;
+    private static IntPtr s_hwndHiddenAtStartup;
+    private static uint s_uExStyleBeforeHide;
     private const uint SWP_NOSIZE = 0x0001;
     private const uint SWP_NOMOVE = 0x0002;
     private const int GWL_STYLE = -16;
@@ -60,6 +72,32 @@ public class TransparentWindow : MonoBehaviour
 
 
     private bool bInitFinished = false;
+
+#if UNITY_STANDALONE_WIN && !UNITY_EDITOR
+    // Unity shows its normal window before the scene loads. Make it fully transparent as early as possible,
+    // so it doesn't flash up as a white window until SetupOverlay() turns it into the overlay.
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSplashScreen)]
+    private static void HideWindowAtStartup()
+    {
+        uint uProcessId = (uint)System.Diagnostics.Process.GetCurrentProcess().Id;
+        IntPtr hwnd = IntPtr.Zero;
+        while ((hwnd = FindWindowEx(IntPtr.Zero, hwnd, "UnityWndClass", null)) != IntPtr.Zero)
+        {
+            GetWindowThreadProcessId(hwnd, out uint uWindowProcessId);
+            if (uWindowProcessId == uProcessId)
+                break;
+        }
+
+        if (hwnd == IntPtr.Zero)
+            return;
+
+        s_hwndHiddenAtStartup = hwnd;
+        // the starter may already have made the window layered + transparent, don't restore that later
+        s_uExStyleBeforeHide = GetWindowLong(hwnd, GWL_EXSTYLE) & ~WS_EX_LAYERED;
+        SetWindowLong(hwnd, GWL_EXSTYLE, s_uExStyleBeforeHide | WS_EX_LAYERED);
+        SetLayeredWindowAttributes(hwnd, 0, 0, LWA_ALPHA);
+    }
+#endif
 
     private void Update()
     {
@@ -158,6 +196,13 @@ public class TransparentWindow : MonoBehaviour
 
         Application.runInBackground = true;
         Canvas.GetDefaultCanvasMaterial().shader = m_shaderUIDefault;
+
+        // undo HideWindowAtStartup(), so the window ends up in exactly the state it had before
+        if (s_hwndHiddenAtStartup != IntPtr.Zero)
+        {
+            SetWindowLong(s_hwndHiddenAtStartup, GWL_EXSTYLE, s_uExStyleBeforeHide);
+            s_hwndHiddenAtStartup = IntPtr.Zero;
+        }
     }
 
 

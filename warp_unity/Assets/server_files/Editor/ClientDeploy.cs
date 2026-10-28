@@ -6,17 +6,48 @@ using Debug = UnityEngine.Debug;
 
 public static class ClientDeploy
 {
-    const string strBuildDir = "Build/client";
+    const string strBuildDir = "Build/WARP";
+    const string strZipPath = "Build/WARP.zip";
 
     [MenuItem("Warp/Client/Build with Starter")]
     public static void BuildWithStarter()
     {
         if (!Build()) return;
-        AddStarter();
+        if (!AddStarter()) return;
+        Zip();
+    }
+
+    [MenuItem("Warp/Client/Build, Zip and Upload")]
+    public static void BuildAndUpload()
+    {
+        if (!Build()) return;
+        if (!AddStarter()) return;
+        ZipAndUpload();
+    }
+
+    [MenuItem("Warp/Client/Zip Last Build")]
+    public static void Zip()
+    {
+        RunDeployScript(false);
+    }
+
+    [MenuItem("Warp/Client/Zip and Upload Last Build")]
+    public static void ZipAndUpload()
+    {
+        RunDeployScript(true);
+    }
+
+    static void RunDeployScript(bool _bUpload)
+    {
+        string strArgs = $"-BuildDir \"{Path.GetFullPath(strBuildDir)}\" -ZipPath \"{Path.GetFullPath(strZipPath)}\"";
+        if (_bUpload) strArgs += " -Upload";
+        ServerDeploy.RunScript("deploy_client.ps1", strArgs,
+            _bUpload ? "Deploying client" : "Zipping client",
+            _bUpload ? "Zipping and uploading..." : "Zipping...");
     }
 
     [MenuItem("Warp/Client/Add Starter to Last Build")]
-    public static void AddStarter()
+    public static bool AddStarter()
     {
         // the starter is not rebuilt here; build it in Visual Studio (Release) first
         string strStarterDir = Path.GetFullPath("../warp_starter/warp_starter/bin/Release");
@@ -26,11 +57,12 @@ public static class ClientDeploy
             if (!File.Exists(strSource))
             {
                 Debug.LogError($"Starter file not found: {strSource}");
-                return;
+                return false;
             }
             File.Copy(strSource, Path.Combine(strBuildDir, strFile), true);
         }
         Debug.Log($"Copied warp_starter to {Path.GetFullPath(strBuildDir)}");
+        return true;
     }
 
     static bool Build()

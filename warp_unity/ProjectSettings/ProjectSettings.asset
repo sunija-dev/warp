@@ -16,7 +16,7 @@ PlayerSettings:
   productName: warp
   defaultCursor: {fileID: 2800000, guid: ad0713a90c41bca4aa75a710eaa71f89, type: 3}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 1, g: 1, b: 1, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_ShowUnitySplashScreen: 0
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 0.5
@@ -147,7 +147,7 @@ PlayerSettings:
   loadStoreDebugModeEnabled: 0
   visionOSBundleVersion: 1.0
   tvOSBundleVersion: 1.0
-  bundleVersion: 1.0.3
+  bundleVersion: 1.0.5
   preloadedAssets:
   - {fileID: 11400000, guid: 43de513607f84f548a504c9d097e4c17, type: 2}
   metroInputSource: 0

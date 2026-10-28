@@ -132,6 +132,7 @@ public class Settings
         // TEMPORARY: delete old settings file, if "deleting old" isn't available in good way
         if (!strSettingsJson.Contains("\"strVersion\": {"))
         {
+            Debug.LogWarning("Settings: Resetting settings.json to defaults, because it has no 'strVersion' entry in the expected format (old file format).");
             WriteDefaultConfig();
             Load();
             return;
@@ -153,6 +154,7 @@ public class Settings
         int[] arVersion = ClientManager.arParseVersion(strRead(OptionKey.strVersion));
         if (arVersion == null || ClientManager.bVersionIsOlder(arVersion, WarpManager.Instance.arVersionDeleteSettingsIfOlder))
         {
+            Debug.LogWarning($"Settings: Resetting settings.json to defaults, because stored version '{strRead(OptionKey.strVersion)}' is unparseable or older than the minimum '{string.Join(".", WarpManager.Instance.arVersionDeleteSettingsIfOlder)}'.");
             WriteDefaultConfig();
             Load();
             return;

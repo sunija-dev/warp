@@ -27,7 +27,10 @@ public class MapMarkerWiki : MonoBehaviour, IPointerUpHandler, IPointerDownHandl
         if (Screen.width < 1024 || Screen.height < 768) // hardcoded in GW2
             fSmallWindowScale = Mathf.Min(Screen.width / 1024f, Screen.height / 768f);
 
-        Vector3 v3Position = (entry.v2Coord - MumbleManager.Instance.v2MapCenter) / MumbleManager.s_gw2Info.mapScale * fSmallWindowScale;
+        // mumble's mapScale ignores gw2's dpi scaling
+        float fDpiScaling = Settings.iRead(Settings.OptionKey.iDpiScaling) / 100f;
+
+        Vector3 v3Position = (entry.v2Coord - MumbleManager.Instance.v2MapCenter) / MumbleManager.s_gw2Info.mapScale * fSmallWindowScale * fDpiScaling;
 
         v3Position.y = (Screen.height / 2f) - v3Position.y;
         v3Position.x += Screen.width / 2f;

@@ -29,8 +29,11 @@ public class MapMarkerChar : MonoBehaviour
         if (Screen.width < 1024 || Screen.height < 768) // hardcoded in GW2
             fSmallWindowScale = Mathf.Min(Screen.width / 1024f, Screen.height / 768f);
 
+        // mumble's mapScale ignores gw2's dpi scaling
+        float fDpiScaling = Settings.iRead(Settings.OptionKey.iDpiScaling) / 100f;
+
         v2ContinentPositionLerp = Vector3.Lerp(v2ContinentPositionLerp, playerInfo.v2ContinentPosition, Time.deltaTime * fLerpSpeed);
-        Vector3 v3Position = (v2ContinentPositionLerp - MumbleManager.Instance.v2MapCenter) / MumbleManager.s_gw2Info.mapScale * fSmallWindowScale;
+        Vector3 v3Position = (v2ContinentPositionLerp - MumbleManager.Instance.v2MapCenter) / MumbleManager.s_gw2Info.mapScale * fSmallWindowScale * fDpiScaling;
 
         v3Position.y = (Screen.height / 2f) - v3Position.y;
         v3Position.x += Screen.width / 2f;

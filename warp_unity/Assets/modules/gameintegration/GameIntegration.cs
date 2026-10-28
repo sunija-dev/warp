@@ -150,7 +150,7 @@ public class GameIntegration : MonoBehaviour
 
             // GW2 is running if the "_gw2Process" isn't null and the class name of process' 
             // window is the game window name (so we know we are passed the login screen)
-            IntPtr hwndGw2 = hwndGetGw2Window();
+            IntPtr hwndGw2 = hwndGetGw2Window(processGw2);
             s_hwndGw2WindowHandle = (IntPtr)hwndGw2.ToInt32();
             Mouse.SetGw2WindowHandle(s_hwndGw2WindowHandle);
             Keyboard.SetGw2WindowHandle(s_hwndGw2WindowHandle);
@@ -428,9 +428,24 @@ public class GameIntegration : MonoBehaviour
                    : null;
     }
 
-    public static IntPtr hwndGetGw2Window()
+    public static IntPtr hwndGetGw2Window(Process _processGw2)
     {
         UnityEngine.Debug.Log("Getting gw2 window.");
+
+        // GW2 sometimes garbles its own window title (e.g. "晦汩憖獲(ー)"), so match the window class of the process first
+        if (_processGw2 != null)
+        {
+            try
+            {
+                IntPtr hwndByClass = OpenWindowGetter.hwndFindWindowOfProcess(_processGw2.Id, GW2_GAMEWINDOW_NAMES);
+                if (hwndByClass != IntPtr.Zero)
+                    return hwndByClass;
+            }
+            catch (InvalidOperationException)
+            {
+                // process exited in the meantime
+            }
+        }
 
         IDictionary<IntPtr, string> dictWindows = OpenWindowGetter.GetOpenWindows();
         IntPtr hwndGW2 = dictWindows.FirstOrDefault(thing => thing.Value == "Guild Wars 2").Key;

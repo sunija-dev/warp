@@ -3,5 +3,6 @@
   "port": 22,
   "user": "warp",
   "keyFile": "C:\\Users\\Sunija\\.ssh\\id_ed25519",
-  "remoteDir": "/home/YOURUSER/warp"
+  "remoteDir": "/home/YOURUSER/warp",
+  "clientRemotePath": "/var/www/vhosts/gw2warp.com/httpdocs/data/recore/WARP.zip"
 }

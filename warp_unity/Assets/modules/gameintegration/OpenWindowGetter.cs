@@ -33,7 +33,37 @@ public static class OpenWindowGetter
         return windows;
     }
 
+    /// <summary>Returns the first visible top-level window of the process whose class name is in _arClassNames, or IntPtr.Zero.</summary>
+    public static HWND hwndFindWindowOfProcess(int _iProcessId, string[] _arClassNames)
+    {
+        HWND hwndFound = IntPtr.Zero;
+
+        EnumWindows(delegate (HWND hWnd, int lParam)
+        {
+            if (!IsWindowVisible(hWnd)) return true;
+
+            GetWindowThreadProcessId(hWnd, out uint uProcessId);
+            if (uProcessId != (uint)_iProcessId) return true;
+
+            StringBuilder builder = new StringBuilder(256);
+            GetClassName(hWnd, builder, builder.Capacity);
+            if (Array.IndexOf(_arClassNames, builder.ToString()) < 0) return true;
+
+            hwndFound = hWnd;
+            return false;
+
+        }, 0);
+
+        return hwndFound;
+    }
+
     private delegate bool EnumWindowsProc(HWND hWnd, int lParam);
+
+    [DllImport("USER32.DLL")]
+    private static extern uint GetWindowThreadProcessId(HWND hWnd, out uint lpdwProcessId);
+
+    [DllImport("USER32.DLL", CharSet = CharSet.Unicode)]
+    private static extern int GetClassName(HWND hWnd, StringBuilder lpClassName, int nMaxCount);
 
     [DllImport("USER32.DLL")]
     private static extern bool EnumWindows(EnumWindowsProc enumFunc, int lParam);
