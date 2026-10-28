@@ -1,4 +1,5 @@
 ﻿<Solution>
+  <Project Path="WarpNative.csproj" />
   <Project Path="NaughtyAttributes.Test.csproj" />
   <Project Path="NaughtyAttributes.Core.csproj" />
   <Project Path="Unity.Mirror.CodeGen.csproj" />

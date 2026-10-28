@@ -7,7 +7,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 The git root is `C:\Data\warp_os_repo` (one level above this folder). It holds four separate projects that make up WARP, a Guild Wars 2 roleplaying overlay:
 
 - `warp_unity/` – the main Unity project (client **and** server). This is where nearly all work happens.
-- `warp_utility/` – C# class library (overlay, mouse/keyboard hook, MumbleLink). Built separately because Unity can't use System.Drawing; the resulting DLLs are copied into `warp_unity/Assets/external`.
+- `warp_utility/` – legacy C# class library (overlay, mouse hook, MumbleLink, mostly copied from Blish HUD). No longer used: the parts WARP needs were ported into `warp_unity/Assets/modules/native` (`WarpNative` asmdef, unsafe code enabled).
 - `warp_starter/` – small WPF app that launches WARP once `Gw2-64` is running.
 - `warp_patcher/` – downloads the WARP zip from a hardcoded URL, replaces the old folder and starts the starter.
 
@@ -52,7 +52,7 @@ There is no CLI build/test/lint setup. Everything runs through the Unity Editor.
 
 **Localization** uses Unity Localization (`Assets/localization`), connected to a Google sheet for translators.
 
-**Third-party / legacy code**: `Assets/Mirror`, `Assets/NaughtyAttributes` (inspector attributes such as `[ShowIf]`), `Assets/TextMesh Pro` and `Assets/old_project` are imported or legacy. Don't refactor them. `Assets/external` holds prebuilt DLLs from `warp_utility` (SharpDX, MonoGame, etc.). `Assets/scenes/unused` is dead.
+**Third-party / legacy code**: `Assets/Mirror`, `Assets/NaughtyAttributes` (inspector attributes such as `[ShowIf]`), `Assets/TextMesh Pro` and `Assets/old_project` are imported or legacy. Don't refactor them. `Assets/modules/native` is Blish HUD-derived WinAPI code (keeps its `Blish_HUD` / `SuMumbleLinkGW2` namespaces and style). `Assets/external` holds `AsyncClipboardService.dll`, used for the clipboard. `Assets/scenes/unused` is dead.
 
 **Scripting define symbols** (`ProjectSettings/ProjectSettings.asset`) include many `MIRROR_*_OR_NEWER` entries and `EDGEGAP_PLUGIN_SERVERS`. Unity regenerates them, so don't edit them by hand.
 

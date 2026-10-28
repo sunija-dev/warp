@@ -84,7 +84,7 @@ Server: Ubuntu vServer
   - Run your windows build
   - Run Guild Wars 2
 
-Full build (with patcher, starter, utility):
+Full build (with patcher, starter):
 
 - Open warp\_patcher and build it
 - Open warp\_starter and build it
@@ -150,11 +150,7 @@ The starter basically just checks every 2 seconds if there is a process that is 
 The starter also causes the taskbar icon in the bottom right, from which the starter can be closed.
 
 ### WARP Utility
-WARP Utility is a c# library that provides code to handle parts of the overlaying, the MouseHook (=Input) and access MumbleLink.
-
-This code cannot be part of the Unity project, because Unity doesn’t allow to import the System.Drawings library. And it might contain some nuget libraries (for the mousehook?), of which I didn’t know how to get them into Unity. 🤔 Getting this code into Unity would make working with it easier. On the other hand… once it is built, you rarely have to touch it.
-
-This codebase is a horrible mess of copied-together code from BlishHUD (for overlaying and mouse/keyboard hooks), and half of the methods are maybe not called anymore because I was able to move them to Unity.
+WARP Utility was a c# library (mostly copied from BlishHUD) for the overlaying, the MouseHook (=Input) and MumbleLink access. It was built separately because it referenced System.Drawing and MonoGame. The parts that WARP actually uses now live in warp_unity/Assets/modules/native (own WarpNative assembly with unsafe code enabled), so warp_utility is no longer needed for building.
 
 ### WARP Unity
 This is the main project, which contains what you see ingame.

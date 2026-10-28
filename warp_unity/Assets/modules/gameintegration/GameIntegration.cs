@@ -9,11 +9,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using Blish_HUD.Controls.Extern;
 using Blish_HUD.Controls.Intern;
-using Blish_HUD.GameIntegration;
 //using Blish_HUD.Settings;
 using Microsoft.Win32;
 using Blish_HUD;
-using Microsoft.Xna.Framework;
 using UnityEngine;
 using System.Linq;
 using System.Collections.Generic;
@@ -61,7 +59,6 @@ public class GameIntegration : MonoBehaviour
     private const string GW2_PATCHWINDOW_NAME = "ArenaNet";
     private static string[] GW2_GAMEWINDOW_NAMES = { "ArenaNet_Dx_Window_Class", "ArenaNet_Gr_Window_Class" };
 
-    public WinFormsIntegration WinForms { get; private set; }
     //public ClientTypeIntegration ClientType { get; private set; }
 
     private readonly string[] m_arProcessNames = { "Gw2-64", "Gw2", "KZW" };
