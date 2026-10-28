@@ -62,6 +62,7 @@ public class TransparentWindow : MonoBehaviour
     const uint LWA_COLORKEY = 0x00000001;
     const uint LWA_ALPHA = 0x00000002;
     private static IntPtr hwndWARP;
+    public static IntPtr s_hwndWarp => hwndWARP;
     private static IntPtr s_hwndHiddenAtStartup;
     private static uint s_uExStyleBeforeHide;
     private const uint SWP_NOSIZE = 0x0001;
@@ -123,11 +124,17 @@ public class TransparentWindow : MonoBehaviour
                 IntPtr hwndNextAbove = WindowUtil.GetWindow(_hwndGw2, WindowUtil.GW.HWNDPREV);
                 if (hwndNextAbove != IntPtr.Zero && hwndNextAbove != _hwndWarp)
                 {
-                    SetWindowPos(_hwndWarp, hwndNextAbove, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                    bool bOk = SetWindowPos(_hwndWarp, hwndNextAbove, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE);
+                    OverlayDebug.SetOverlayBranch($"GW2 not foreground (fg {hwndActive}), placed WARP under {hwndNextAbove}, "
+                        + (bOk ? "ok" : "failed, error " + Marshal.GetLastWin32Error()));
                 }
+                else
+                    OverlayDebug.SetOverlayBranch($"GW2 not foreground (fg {hwndActive}), no move (window above GW2: {hwndNextAbove})");
             }
             return;
         }
+
+        OverlayDebug.SetOverlayBranch($"GW2 foreground, ScaleToGW2 (wasOnTop {_bWasOnTop})");
 
         // SCALE WINDOW TO WINDOWED MODE
         WindowUtil.ScaleToGW2(_hwndWarp, _hwndGw2, _bWasOnTop); // also sets window on top
@@ -206,8 +213,10 @@ public class TransparentWindow : MonoBehaviour
     }
 
 
-    public static void SetClickthrough(bool clickthrough) 
+    public static void SetClickthrough(bool clickthrough)
     {
+        OverlayDebug.AddEvent($"SetClickthrough({clickthrough}) on {hwndWARP}");
+
         if (clickthrough) 
         {
             //Debug.Log("Window is CLICKTHROUGH");

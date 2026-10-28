@@ -38,9 +38,9 @@ public class Logger : MonoBehaviour
 
         try
         {
-            string strLog = string.Format("[{0}] {1}\n", DateTime.UtcNow.ToString("HH:mm:ss"), _strLog);
+            string strLog = string.Format("[{0}] {1}", DateTime.UtcNow.ToString("HH:mm:ss"), _strLog);
             if (m_bLogVerbose)
-                strLog += _strStackTrace + "\n";
+                strLog += "\n" + _strStackTrace.TrimEnd('\n');
             System.IO.File.AppendAllText(m_strPath, strLog + "\n");
         }
         catch 

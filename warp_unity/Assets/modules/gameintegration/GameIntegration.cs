@@ -197,6 +197,24 @@ public class GameIntegration : MonoBehaviour
         TryAttachToGw2();
 
         //StartCoroutine(coLogDebugInfo());
+#if !UNITY_EDITOR
+        if (m_coOverlayWatchdog != null) StopCoroutine(m_coOverlayWatchdog);
+        m_coOverlayWatchdog = StartCoroutine(coOverlayWatchdog());
+#endif
+    }
+
+    private Coroutine m_coOverlayWatchdog;
+
+    // checks once per second if WARP really is above GW2 while it should be visible, see OverlayDebug
+    private IEnumerator coOverlayWatchdog()
+    {
+        while (true)
+        {
+            yield return new WaitForSecondsRealtime(1f);
+
+            if (s_bWarpIsVisible && m_bGw2IsRunning)
+                OverlayDebug.CheckOverlay(s_hwndWarpFormHandle, s_hwndGw2WindowHandle, m_processGw2);
+        }
     }
 
     private IEnumerator coLogDebugInfo() 
@@ -233,13 +251,19 @@ public class GameIntegration : MonoBehaviour
 
         // Hackfix: only switch state to true if it changed for two frames
         bool bWarpHasFocusRaw = WindowUtil.GetForegroundWindow() == s_hwndWarpFormHandle; // TODO: randomly sets to true sometimes
+        bool bWarpHadFocus = s_bWarpHasFocus;
         s_bWarpHasFocus = m_bWarpHasFocusLast && bWarpHasFocusRaw;
         m_bWarpHasFocusLast = bWarpHasFocusRaw;
+        if (bWarpHadFocus != s_bWarpHasFocus)
+            OverlayDebug.AddEvent($"WARP focus: {s_bWarpHasFocus}");
 
-        if (m_bGw2IsRunning) 
+        if (m_bGw2IsRunning)
         {
             IntPtr hwndActiveWindowHandle = WindowUtil.GetForegroundWindow();
+            bool bGw2HadFocus = m_bGw2HasFocus;
             m_bGw2HasFocus = (hwndActiveWindowHandle == s_hwndGw2WindowHandle) || MumbleManager.Instance.bGameHasFocus;
+            if (bGw2HadFocus != m_bGw2HasFocus)
+                OverlayDebug.AddEvent($"GW2 focus: {m_bGw2HasFocus} (foreground {hwndActiveWindowHandle}, gw2 handle {s_hwndGw2WindowHandle}, mumble {MumbleManager.Instance.bGameHasFocus})");
 
             m_bGw2WasOpenOnce = true;
             m_fGw2ClosedSince = 0f;
@@ -279,6 +303,7 @@ public class GameIntegration : MonoBehaviour
             else
                 eWarpBecomesHidden.Invoke(this, null);
 
+            OverlayDebug.AddEvent($"WARP visible: {bWarpisVisible}");
             if (m_bLogIfWarpChangesVisibility)
                 UnityEngine.Debug.Log($"Make WARP {(bWarpisVisible ? "visible" : "invisible")}. (gw2 has focus: {m_bGw2HasFocus}, warp has focus last: {m_bWarpHasFocusLast})");
         }
@@ -558,7 +583,9 @@ public class GameIntegration : MonoBehaviour
         {
             try
             {
-                WindowUtil.SetForegroundWindowEx(this.m_processGw2.MainWindowHandle);
+                IntPtr hwndMain = this.m_processGw2.MainWindowHandle;
+                bool bOk = WindowUtil.SetForegroundWindow(hwndMain);
+                OverlayDebug.AddEvent($"FocusGw2 -> MainWindowHandle {hwndMain} (gw2 handle {s_hwndGw2WindowHandle}), ok: {bOk}");
             }
             catch (NullReferenceException e)
             {

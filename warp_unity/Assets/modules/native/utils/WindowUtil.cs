@@ -77,7 +77,7 @@ namespace Blish_HUD
         [DllImport("user32.dll", EntryPoint = "SetWindowLongPtr")]
         private static extern IntPtr SetWindowLongPtr64(IntPtr hWnd, int nIndex, UIntPtr dwNewLong);
 
-        [DllImport("user32.dll")]
+        [DllImport("user32.dll", SetLastError = true)]
         private static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         [StructLayout(LayoutKind.Sequential)]
@@ -164,6 +164,11 @@ namespace Blish_HUD
         }
 
         private static (int X, int Y, int Width, int Height) rectanglePos;
+
+        // for debugging the overlay ending up behind GW2
+        public static bool LastSetWindowPosResult = true;
+        public static int LastSetWindowPosError = 0;
+
         public static void ScaleToGW2(IntPtr winHandle, IntPtr gw2WindowHandle, bool wasOnTop)
         {
             RECT rectClient = new RECT();
@@ -197,7 +202,8 @@ namespace Blish_HUD
                     rectClient.Bottom - rectClient.Top
                 );
 
-                SetWindowPos(winHandle, HWND_TOPMOST, rectClient.Left + screenPoint.X, rectClient.Top + screenPoint.Y, rectClient.Right - rectClient.Left, rectClient.Bottom - rectClient.Top, 0);
+                LastSetWindowPosResult = SetWindowPos(winHandle, HWND_TOPMOST, rectClient.Left + screenPoint.X, rectClient.Top + screenPoint.Y, rectClient.Right - rectClient.Left, rectClient.Bottom - rectClient.Top, 0);
+                LastSetWindowPosError = LastSetWindowPosResult ? 0 : Marshal.GetLastWin32Error();
 
                 Margins margins = new Margins
                 {
